@@ -12,6 +12,8 @@ void initialize_bldc()
 
   analogWrite(SPEED_IN1, 125);
   analogWrite(SPEED_IN2, 125);
+  digitalWrite(DIR1, LOW);
+  digitalWrite(DIR2, HIGH);
   digitalWrite(START_STOP1, HIGH); //stop
   digitalWrite(START_STOP2, HIGH); //stop
 
@@ -19,53 +21,39 @@ void initialize_bldc()
 
 }
 
-void bldc_control(int speed)
+void fb_control(int dir, int speed)
 {
-  Serial.print("Speed = ");
-  Serial.println(speed);
+  // Turn motor on
+  if(speed>255){
+    speed = 255;
+  }
   current_speed = speed;
 
-  // Turn motor on
+  // 0 : fwd, 1 : bwd
+  if(dir == 0){
+    digitalWrite(DIR1, LOW);
+    digitalWrite(DIR2, HIGH);
+  }
+  else if(dir == 1){
+    digitalWrite(DIR1, HIGH);
+    digitalWrite(DIR2, LOW);
+  }
   digitalWrite(START_STOP1, LOW);
   digitalWrite(START_STOP2, LOW);
 
   // Slowly increase motor speed
   for (int i = 150; i <= speed; i += 10) {
+    Serial.println(i);
     analogWrite(SPEED_IN1, i);
     delay(250);
   }
-}
 
-void move_forward()
-{
-  digitalWrite(DIR1, HIGH);
-  digitalWrite(DIR2, LOW);
-  
-  bldc_control(30);
-}
-
-void move_backward()
-{
-  digitalWrite(DIR1, LOW);
-  digitalWrite(DIR2, HIGH);
-  
-  bldc_control(30);
-}
-
-void move_forward()
-{
-  digitalWrite(DIR1, HIGH);
-  digitalWrite(DIR2, LOW);
-  
-  bldc_control(30);
 }
 
 void turn_off_motor()
 {
-  Serial.print("current speed at");
-  Serial.println(current_speed);
   // Slowly decrease motor speed
-  for (int i = current_speed; i >= 150; i -= 10) {
+  for (int i = current_speed; i >= 150; i -= 5) {
     analogWrite(SPEED_IN1, i);
     delay(250);
   }
