@@ -5,6 +5,11 @@
 #include <std_msgs/Empty.h>
 #include <geometry_msgs/Twist.h>
 
+#include "config.h"
+#include "_step_control.h"
+#include "_motor_control.h"
+
+
 // ROS usage
 ros::NodeHandle n;
 std_msgs::String str_msg;
@@ -12,11 +17,9 @@ char heartbeat[18] = "arduino heartbeat";
 
 // Subscriber Callbacks
 void numberCallback(const std_msgs::UInt8& msg){
-  n.loginfo(msg.data);
 }
-void cmdvelCallback(onst geometry_msgs::Twist& cmdVel){
-  n.loginfo(cmdVel.linear.x);
-  n.loginfo(cmdVel.angular.z);
+void cmdvelCallback(const geometry_msgs::Twist& cmdVel){
+  Serial.println(cmdVel.linear.x);
 }
 
 // SUbscriber Declaration
@@ -27,12 +30,23 @@ ros::Subscriber<std_msgs::UInt8> sub("hex", &numberCallback); //Empty
 ros::Publisher rosduino("rosduino", &str_msg);
 
 
+void setupMotors()
+{
+  // BLDC
+  initialize_bldc();
+  // STEPPER
+  pinMode(STEP_DIR, OUTPUT);
+  pinMode(STEP_STEP, OUTPUT);
+  pinMode(STEP_EN, OUTPUT);
+  digitalWrite(STEP_EN, LOW);
+}
+
 void setup()
 {
-  Serial.begin(9600); 
-  Serial.println("Arduino is ready");
-  initialize_bldc();
-
+  Serial.begin(57600); 
+  Serial.println("Driver is ready");
+  
+  
   // ROSSERIAL with Jetson
   n.initNode();
   n.advertise(rosduino);
@@ -41,13 +55,18 @@ void setup()
 
   // Initial Motor Check should be removed for action
   fb_control(0, 250);
-  delay(10000);
+  delay(5000);
   turn_off_motor();
+  Serial.println("--------");
+  lr_control(0, 100);
+  delay(10000);
+  Serial.println("done spd2");
+  turn_off_motor(); 
 }
 
 
 void loop()
-{
+{ 
   str_msg.data = heartbeat;
   rosduino.publish(&str_msg);
   n.spinOnce();
