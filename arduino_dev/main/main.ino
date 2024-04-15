@@ -44,6 +44,7 @@ void setupMotors()
 void setup()
 {
   Serial.begin(57600); 
+  setupMotors();
   Serial.println("Driver is ready");
   
   
@@ -54,14 +55,12 @@ void setup()
   n.subscribe(subCmdVel);
 
   // Initial Motor Check should be removed for action
-  fb_control(0, 250);
-  delay(5000);
-  turn_off_motor();
-  Serial.println("--------");
-  lr_control(0, 100);
-  delay(10000);
-  Serial.println("done spd2");
-  turn_off_motor(); 
+  
+//  Serial.println("--------");
+//  lr_control(0, 100);
+//  delay(10000);
+//  Serial.println("done spd2");
+//  turn_off_motor(); 
 }
 
 
@@ -71,4 +70,7 @@ void loop()
   rosduino.publish(&str_msg);
   n.spinOnce();
   delay(1000);
+  lr_control(0, 250);
+  delay(5000);
+  turn_off_motor();
 }

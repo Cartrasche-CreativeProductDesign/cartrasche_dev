@@ -48,10 +48,14 @@ void fb_control(int dir, int speed)
   digitalWrite(START_STOP2, LOW);
 
   // Slowly increase motor speed
-  for (int i = 150; i <= speed; i += 10) {
+  for (int i = 0; i <= speed; i += 5) {
     Serial.println(i);
     analogWrite(SPEED_IN1, i);
     delay(250);
+    if(i==85)
+    {
+      delay(5000);
+    }
   }
 }
 
@@ -77,8 +81,14 @@ void lr_control(int dir, int speed)
   digitalWrite(START_STOP2, LOW);
 
   Serial.println("SPD2");
-  analogWrite(SPEED_IN1, 250);
-  analogWrite(SPEED_IN2, 100);/
+  analogWrite(SPEED_IN1, 200);
+  delay(5000);
+  Serial.println("start");
+  for (int i = 0; i <= 250; i += 5) {
+    Serial.println(i);
+    analogWrite(SPEED_IN2, i);
+    delay(1000);
+  }
 }
 
 
