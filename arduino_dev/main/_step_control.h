@@ -14,21 +14,26 @@ int stepDelay = 500;
 int checkAngle = 0;
 int a = 0;
 
+// button state
+int M2T_bs = 0;
+int B2T_bs = 0;
+
+// push up the link
 void spinUp(){
     digitalWrite(STEP_DIR, LOW);
-    for(int i  = 0; i < 5*stepsPerRevolution; i++){
+    for(int i  = 0; i < upcount*stepsPerRevolution; i++){
       Serial.println(i);
       digitalWrite(STEP_STEP, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP, LOW);
       delayMicroseconds(stepDelay);
     }
-
 }
 
+// let down the link
 void spinDown(){
     digitalWrite(STEP_DIR, HIGH);
-    for(int i  = 0; i < 5*stepsPerRevolution; i++){
+    for(int i  = 0; i < upcount*stepsPerRevolution; i++){
       Serial.println(i);
       digitalWrite(STEP_STEP, HIGH);
       delayMicroseconds(stepDelay);
@@ -36,6 +41,16 @@ void spinDown(){
       delayMicroseconds(stepDelay);
     }
 }
+
+void mid2top(){
+  spinUp();
+
+}
+
+void bot2top(){
+
+}
+
 
 void STEP_TEST(){
   if (checkAngle == 0) {a = +1; }

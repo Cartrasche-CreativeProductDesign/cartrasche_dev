@@ -68,7 +68,7 @@ void lr_control(int dir, int speed)
   }
   current_speed = speed;
 
-  // 0 : fwd, 1 : bwd
+  // 0 : left, 1 : right
   if(dir == 0){
     digitalWrite(DIR1, LOW);
     digitalWrite(DIR2, HIGH);

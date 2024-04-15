@@ -10,10 +10,24 @@
 #define  START_STOP2  13    //   PINK 17
 ////////////////////////////////////////
 
-////////////// FEEDER STEP //////////////
+////////////// SCREW STEP //////////////
 #define STEP_DIR 22  // CW+  2
 #define STEP_STEP 24 // CLK+ 5
 #define STEP_EN 26   // EN+  8
 /////////////////////////////////////////
+
+////////////// ROTATION STEP //////////////
+#define STEP_DIR_TOP 28  // CW+  2
+#define STEP_STEP_TOP 30 // CLK+ 5
+#define STEP_EN_TOP 32   // EN+  8
+
+#define STEP_DIR_BOT 34  // CW+  2
+#define STEP_STEP_BOT 36 // CLK+ 5
+#define STEP_EN_BOT 38   // EN+  8
+/////////////////////////////////////////
+
+#define MID2TOP 50
+#define BOT2TOP 52
+const int upcount = 10;
 
 #endif
