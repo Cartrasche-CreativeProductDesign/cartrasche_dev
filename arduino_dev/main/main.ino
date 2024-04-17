@@ -52,7 +52,6 @@ void setup()
   n.subscribe(subCmdVel);
 }
 
-
 void loop()
 { 
   str_msg.data = heartbeat;

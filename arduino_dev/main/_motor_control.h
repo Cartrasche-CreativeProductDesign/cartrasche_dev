@@ -15,23 +15,24 @@ void initialize_bldc()
   pinMode(SPEED_IN1, OUTPUT);
   pinMode(SPEED_IN2, OUTPUT);
 
-  analogWrite(SPEED_IN1, 125);
-  analogWrite(SPEED_IN2, 125);
+  analogWrite(SPEED_IN1, 125); //stop
+  analogWrite(SPEED_IN2, 125); //stop
   digitalWrite(DIR1, LOW);
   digitalWrite(DIR2, HIGH);
   digitalWrite(START_STOP1, HIGH); //stop
   digitalWrite(START_STOP2, HIGH); //stop
 
   Serial.println("BLDC Initialization Done");
-
 }
 
-
+// 0 ~ 100 : fwd
+// 100 ~ 150 : stop
+// 150 ~250 : bwd 
+// 이지만 후진 RPM이 훨씬 강해서 DIR 전환으로 전후진 제어하기로 결정
 void fb_control(int dir, int speed)
 {
-  // Turn motor on
-  if(speed>255){
-    speed = 255;
+  if(speed>250){
+    speed = 250;
   }
   current_speed = speed;
 
@@ -48,23 +49,21 @@ void fb_control(int dir, int speed)
   digitalWrite(START_STOP2, LOW);
 
   // Slowly increase motor speed
-  for (int i = 0; i <= speed; i += 5) {
+  for (int i = 150; i <= speed; i += 5) {
     Serial.println(i);
     analogWrite(SPEED_IN1, i);
     delay(250);
-    if(i==85)
-    {
-      delay(5000);
-    }
   }
 }
 
-
+// 0 ~ 100 : left
+// 100 ~ 150 : stop
+// 150 ~250 : right 
 void lr_control(int dir, int speed)
 {
   // Turn motor on
-  if(speed>255){
-    speed = 255;
+  if(speed>250){
+    speed = 250;
   }
   current_speed = speed;
 
@@ -80,10 +79,6 @@ void lr_control(int dir, int speed)
   digitalWrite(START_STOP1, LOW);
   digitalWrite(START_STOP2, LOW);
 
-  Serial.println("SPD2");
-  analogWrite(SPEED_IN1, 200);
-  delay(5000);
-  Serial.println("start");
   for (int i = 0; i <= 250; i += 5) {
     Serial.println(i);
     analogWrite(SPEED_IN2, i);

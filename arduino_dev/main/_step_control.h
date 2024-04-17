@@ -15,8 +15,8 @@ int checkAngle = 0;
 int a = 0;
 
 // button state
-int M2T_bs = 0;
-int B2T_bs = 0;
+// int M2T_bs = 0;
+// int B2T_bs = 0;
 
 // push up the link
 void spinUp(){
@@ -42,13 +42,42 @@ void spinDown(){
     }
 }
 
+// rotate top stepper once
+void rotateTop(){
+    digitalWrite(STEP_DIR_TOP, HIGH); // direction check later
+    for(int i  = 0; i < stepsPerRevolution; i++){
+      Serial.println(i);
+      digitalWrite(STEP_STEP_TOP, HIGH);
+      delayMicroseconds(stepDelay);
+      digitalWrite(STEP_STEP_TOP, LOW);
+      delayMicroseconds(stepDelay);
+    }
+}
+
+// rotate bottom stepper once
+void rotateBot(){
+    digitalWrite(STEP_DIR_BOT, HIGH);
+    for(int i  = 0; i < stepsPerRevolution; i++){
+      Serial.println(i);
+      digitalWrite(STEP_STEP_BOT, HIGH);
+      delayMicroseconds(stepDelay);
+      digitalWrite(STEP_STEP_BOT, LOW);
+      delayMicroseconds(stepDelay);
+    }
+}
+
 void mid2top(){
   spinUp();
-
+  delay(500);
+  rotateTop();
+  delay(500);
+  spinDown();
 }
 
 void bot2top(){
-
+  rotateBot();
+  delay(500);
+  mid2top();
 }
 
 

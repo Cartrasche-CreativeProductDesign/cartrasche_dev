@@ -15,6 +15,8 @@ char heartbeat[18] = "rosduino heartbeat";
 void cmdvelCallback(const geometry_msgs::Twist& cmdVel){
   Serial.println(cmdVel.linear.x);
   Serial.println(cmdVel.angular.z);
+
+  double RPM = cmdVel.linear.x / (2*PI*WHEEL_RAD);
   
   if(cmdVel.linear.x == 0){
     turn_off_motor();

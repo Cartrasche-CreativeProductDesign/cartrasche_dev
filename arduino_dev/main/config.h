@@ -1,6 +1,14 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+///////////// Robot Config /////////////
+#define WHEEL_RAD     0.1 // m
+#define PI            3.1415926535897932384626433832795
+
+#define VEL_MAX 30 // m/s
+#define ANG_MAX 30 // deg
+////////////////////////////////////////
+
 ////////////// BLDC MOTOR //////////////
 #define    SPEED_IN1   5    // ORANGE  6
 #define    SPEED_IN2   6    // ORANGE  8
