@@ -1,3 +1,8 @@
+#ifndef _MOTOR_CONTROL_H
+#define _MOTOR_CONTROL_H
+
+#include "config.h"
+
 int current_speed;
 
 void initialize_bldc()
@@ -21,6 +26,7 @@ void initialize_bldc()
 
 }
 
+
 void fb_control(int dir, int speed)
 {
   // Turn motor on
@@ -42,13 +48,49 @@ void fb_control(int dir, int speed)
   digitalWrite(START_STOP2, LOW);
 
   // Slowly increase motor speed
-  for (int i = 150; i <= speed; i += 10) {
+  for (int i = 0; i <= speed; i += 5) {
     Serial.println(i);
     analogWrite(SPEED_IN1, i);
     delay(250);
+    if(i==85)
+    {
+      delay(5000);
+    }
   }
-
 }
+
+
+void lr_control(int dir, int speed)
+{
+  // Turn motor on
+  if(speed>255){
+    speed = 255;
+  }
+  current_speed = speed;
+
+  // 0 : left, 1 : right
+  if(dir == 0){
+    digitalWrite(DIR1, LOW);
+    digitalWrite(DIR2, HIGH);
+  }
+  else if(dir == 1){
+    digitalWrite(DIR1, HIGH);
+    digitalWrite(DIR2, LOW);
+  }
+  digitalWrite(START_STOP1, LOW);
+  digitalWrite(START_STOP2, LOW);
+
+  Serial.println("SPD2");
+  analogWrite(SPEED_IN1, 200);
+  delay(5000);
+  Serial.println("start");
+  for (int i = 0; i <= 250; i += 5) {
+    Serial.println(i);
+    analogWrite(SPEED_IN2, i);
+    delay(1000);
+  }
+}
+
 
 void turn_off_motor()
 {
@@ -61,3 +103,5 @@ void turn_off_motor()
   digitalWrite(START_STOP1, HIGH);
   digitalWrite(START_STOP2, HIGH);
 }
+
+#endif
