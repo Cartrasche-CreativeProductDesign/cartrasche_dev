@@ -50,7 +50,7 @@ Only interested in the center coordinates of the marker. It is easily found on t
 
     /aruco_single/pixel 
 
-    /aruco_position/pixel
+    /aruco_single/position
 
 
 # Trials and Errors 
