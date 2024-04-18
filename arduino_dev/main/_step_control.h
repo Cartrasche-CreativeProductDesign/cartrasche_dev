@@ -22,7 +22,6 @@ int a = 0;
 void spinUp(){
     digitalWrite(STEP_DIR, LOW);
     for(int i  = 0; i < upcount*stepsPerRevolution; i++){
-      Serial.println(i);
       digitalWrite(STEP_STEP, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP, LOW);
@@ -34,7 +33,6 @@ void spinUp(){
 void spinDown(){
     digitalWrite(STEP_DIR, HIGH);
     for(int i  = 0; i < upcount*stepsPerRevolution; i++){
-      Serial.println(i);
       digitalWrite(STEP_STEP, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP, LOW);
@@ -46,7 +44,6 @@ void spinDown(){
 void rotateTop(){
     digitalWrite(STEP_DIR_TOP, HIGH); // direction check later
     for(int i  = 0; i < stepsPerRevolution; i++){
-      Serial.println(i);
       digitalWrite(STEP_STEP_TOP, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP_TOP, LOW);
@@ -58,7 +55,6 @@ void rotateTop(){
 void rotateBot(){
     digitalWrite(STEP_DIR_BOT, HIGH);
     for(int i  = 0; i < stepsPerRevolution; i++){
-      Serial.println(i);
       digitalWrite(STEP_STEP_BOT, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP_BOT, LOW);
@@ -91,7 +87,6 @@ void STEP_TEST(){
 
     digitalWrite(STEP_DIR, LOW);
     for(int i  = 0; i < 5*stepsPerRevolution; i++){
-      Serial.println(i);
       digitalWrite(STEP_STEP, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP, LOW);
@@ -100,7 +95,6 @@ void STEP_TEST(){
 
     digitalWrite(STEP_DIR, HIGH);
     for(int i  = 0; i < 5*stepsPerRevolution; i++){
-      Serial.println(i);
       digitalWrite(STEP_STEP, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP, LOW);
