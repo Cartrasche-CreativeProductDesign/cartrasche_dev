@@ -28,14 +28,23 @@ As a result of the calibration, a YAML file, which describes the camera intrinsi
     sudo sh src/ydlidar_ros_driver/startup/initenv.sh
 
 ## Hector Slam 
+<https://github.com/tu-darmstadt-ros-pkg/hector_slam>
 
-    git clone 
+    git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git
+
+    catkin_make 
 
 # Run Launch File 
 
 ## Camera + ArUco
+camera and ArUco
+
+    roslaunch vision cam_aruco_bringup.launch
+    
 
 ## LiDAR + Hector Slam
+
+    roslaunch vision lidar_slam_bringup.launch
 
 # Topics
 
