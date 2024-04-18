@@ -13,7 +13,8 @@
 // SUbscriber Declaration
 ros::Subscriber<geometry_msgs::Twist> subCmdVel("cmd_vel", &cmdvelCallback );
 // Publisher Declaration
-ros::Publisher rosduino("rosduino", &str_msg);
+ros::Publisher rosduino("rosduino", &cmd_vel);
+ros::Publisher testcon("testcon", &mstr_msg)
 
 void setupMotors()
 {
@@ -43,20 +44,20 @@ void setupPheris()
 
 void setup()
 {
-  Serial.begin(57600); 
+  // Serial.begin(57600); 
   setupMotors();  
   setupPheris();
   // ROSSERIAL with Jetson
   n.initNode();
+  n.advertise(testcon); // to be removed
   n.advertise(rosduino);
   n.subscribe(subCmdVel);
 }
 
-
 void loop()
 { 
   str_msg.data = heartbeat;
-  rosduino.publish(&str_msg);
+  testcon.publish(&str_msg);
   n.spinOnce();
   delay(1000);
 
