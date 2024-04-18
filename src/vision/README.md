@@ -2,7 +2,10 @@
 
 ## Camera 
 
-  sudo apt install ros-noetic-usb-cam ros-noetic-camera-calibration
+    sudo apt install ros-noetic-usb-cam
+    rosdep install camera calibration 
+
+Do camera calibration
 
 ## ArUco
 
