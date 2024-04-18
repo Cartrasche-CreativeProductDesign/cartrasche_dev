@@ -2,6 +2,8 @@
 
 ## Camera 
 
+  sudo apt install ros-noetic-usb-cam ros-noetic-camera-calibration
+
 ## ArUco
 
 ## LiDAR
