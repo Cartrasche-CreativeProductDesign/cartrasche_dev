@@ -13,9 +13,19 @@ As a result of the calibration, a YAML file, which describes the camera intrinsi
 
 ## ArUco
 
-## LiDAR
+    git clone https://github.com/pal-robotics/aruco_ros
+
+    cd aruco_ros
+    mkdir src 
+    cmake_make
+    
+## LiDAR SDK Installation 
+
+    git clone 
 
 ## Hector Slam 
+
+    git clone 
 
 # Run Launch File 
 
@@ -24,3 +34,9 @@ As a result of the calibration, a YAML file, which describes the camera intrinsi
 ## LiDAR + Hector Slam
 
 # Topics
+
+# Trials and Errors 
+
+    serialConfig.cmake not found<https://github.com/wjwwood/serial/issues/89> 
+
+    sudo apt install ros-noetic-serial 
