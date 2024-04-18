@@ -37,7 +37,6 @@ As a result of the calibration, a YAML file, which describes the camera intrinsi
 # Run Launch File 
 
 ## Camera + ArUco
-camera and ArUco
 
     roslaunch vision cam_aruco_bringup.launch
     
@@ -47,6 +46,12 @@ camera and ArUco
     roslaunch vision lidar_slam_bringup.launch
 
 # Topics
+Only interested in the center coordinates of the marker. It is easily found on the topic /aruco_single/pixel
+
+    /aruco_single/pixel 
+
+    /aruco_position/pixel
+
 
 # Trials and Errors 
 
