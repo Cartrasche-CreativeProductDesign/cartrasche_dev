@@ -17,11 +17,15 @@ As a result of the calibration, a YAML file, which describes the camera intrinsi
 
     cd aruco_ros
     mkdir src 
-    cmake_make
+    catkin_make
     
 ## LiDAR SDK Installation 
+<https://github.com/YDLIDAR/ydlidar_ros_driver>
+    
+    git clone https://github.com/YDLIDAR/ydlidar_ros_driver.git
 
-    git clone 
+    chmod 0777 src/ydlidar_ros_driver/startup/*
+    sudo sh src/ydlidar_ros_driver/startup/initenv.sh
 
 ## Hector Slam 
 
