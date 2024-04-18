@@ -15,8 +15,23 @@ int checkAngle = 0;
 int a = 0;
 
 // button state
-// int M2T_bs = 0;
-// int B2T_bs = 0;
+int M2T_bs = 0;
+int B2T_bs = 0;
+
+void initialize_steppers(){
+  pinMode(STEP_DIR, OUTPUT);
+  pinMode(STEP_STEP, OUTPUT);
+  pinMode(STEP_EN, OUTPUT);
+  digitalWrite(STEP_EN, LOW);
+  pinMode(STEP_DIR_TOP, OUTPUT);
+  pinMode(STEP_STEP_TOP, OUTPUT);
+  pinMode(STEP_EN_TOP, OUTPUT);
+  digitalWrite(STEP_EN_TOP, LOW);
+  pinMode(STEP_DIR_BOT, OUTPUT);
+  pinMode(STEP_STEP_BOT, OUTPUT);
+  pinMode(STEP_EN_BOT, OUTPUT);
+  digitalWrite(STEP_EN_BOT, LOW);
+}
 
 // push up the link
 void spinUp(){

@@ -9,18 +9,17 @@
 // ROS usage
 ros::NodeHandle n;
 std_msgs::String str_msg;
+ros::Publisher rosduino("rosduino", &str_msg);
 char callback[18] = "rcvd topic";
 
 // Subscriber Callbacks
 void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
-  // Serial.println(cmdVel.linear.x);
-  // Serial.println(cmdVel.angular.z);
 
   double RPM = cmd_vel.linear.x / (2*PI*WHEEL_RAD);
   str_msg.data = callback;
-  testcon.publish(&str_msg);
+  rosduino.publish(&str_msg);
   
-  if(cmdVel.linear.x == 0){
+  if(cmd_vel.linear.x == 0){
     turn_off_motor();
   }
 }

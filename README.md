@@ -9,12 +9,14 @@ source /home/minjun/cartrasche_dev/devel/setup.bash
 ```
 
 ## How to Run
-Open three terminals
+Open two terminals
 ```
 roscore
 
-# md_robot_node feeds /cmd_vel
-roslaunch md md_robot_node
-
-roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=57600
 ```
+
+## ROSSERIAL-ATMEGA
+ARDUINO
+- Subscribe : /cmd_vel  [geometry_msgs::Twist]
+- Publish   : /rosduino [std_msgs::String]
