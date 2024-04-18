@@ -9,14 +9,16 @@
 // ROS usage
 ros::NodeHandle n;
 std_msgs::String str_msg;
-char heartbeat[18] = "rosduino heartbeat";
+char callback[18] = "rcvd topic";
 
 // Subscriber Callbacks
-void cmdvelCallback(const geometry_msgs::Twist& cmdVel){
-  Serial.println(cmdVel.linear.x);
-  Serial.println(cmdVel.angular.z);
+void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
+  // Serial.println(cmdVel.linear.x);
+  // Serial.println(cmdVel.angular.z);
 
-  double RPM = cmdVel.linear.x / (2*PI*WHEEL_RAD);
+  double RPM = cmd_vel.linear.x / (2*PI*WHEEL_RAD);
+  str_msg.data = callback;
+  testcon.publish(&str_msg);
   
   if(cmdVel.linear.x == 0){
     turn_off_motor();
