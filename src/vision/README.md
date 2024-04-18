@@ -9,7 +9,7 @@
 Before continuing to the next step, you must complete camera calibration:
 <http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration>
 
-As a result of the calibration, a YAML file, which describes the camera intrinsic parameters, is created at /tmp/...
+As a result of the calibration, a YAML file, which describes the camera intrinsic parameters, is created at /tmp/.../opt.yml(you should definitely check the log). 
 
 ## ArUco
 
