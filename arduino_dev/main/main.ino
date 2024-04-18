@@ -44,12 +44,13 @@ void setupPheris()
 
 void setup()
 {
-  Serial.begin(57600); 
+  // Serial.begin(57600); 
   setupMotors();  
   setupPheris();
   // ROSSERIAL with Jetson
   n.initNode();
-  n.advertise(testcon);
+  n.advertise(testcon); // to be removed
+  n.advertise(rosduino);
   n.subscribe(subCmdVel);
 }
 
