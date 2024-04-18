@@ -22,7 +22,7 @@ void initialize_bldc()
   digitalWrite(START_STOP1, HIGH); //stop
   digitalWrite(START_STOP2, HIGH); //stop
 
-  Serial.println("BLDC Initialization Done");
+  // Serial.println("BLDC Initialization Done");
 }
 
 // 0 ~ 100 : fwd
@@ -50,7 +50,7 @@ void fb_control(int dir, int speed)
 
   // Slowly increase motor speed
   for (int i = 150; i <= speed; i += 5) {
-    Serial.println(i);
+    // Serial.println(i);
     analogWrite(SPEED_IN1, i);
     delay(250);
   }
@@ -80,7 +80,7 @@ void lr_control(int dir, int speed)
   digitalWrite(START_STOP2, LOW);
 
   for (int i = 0; i <= 250; i += 5) {
-    Serial.println(i);
+    // Serial.println(i);
     analogWrite(SPEED_IN2, i);
     delay(1000);
   }
