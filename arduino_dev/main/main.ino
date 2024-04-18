@@ -13,38 +13,26 @@
 // SUbscriber Declaration
 ros::Subscriber<geometry_msgs::Twist> subCmdVel("cmd_vel", &cmdvelCallback );
 // Publisher Declaration
-ros::Publisher rosduino("rosduino", &cmd_vel);
-ros::Publisher testcon("testcon", &mstr_msg)
+char heartbeat[18] = "arduino heartbeat";
+ros::Publisher testcon("testcon", &str_msg);
 
 void setupMotors()
 {
   // BLDC
   initialize_bldc();
   // STEPPER
-  pinMode(STEP_DIR, OUTPUT);
-  pinMode(STEP_STEP, OUTPUT);
-  pinMode(STEP_EN, OUTPUT);
-  digitalWrite(STEP_EN, LOW);
-
-  pinMode(STEP_DIR_TOP, OUTPUT);
-  pinMode(STEP_STEP_TOP, OUTPUT);
-  pinMode(STEP_EN_TOP, OUTPUT);
-  digitalWrite(STEP_EN_TOP, LOW);
-  pinMode(STEP_DIR_BOT, OUTPUT);
-  pinMode(STEP_STEP_BOT, OUTPUT);
-  pinMode(STEP_EN_BOT, OUTPUT);
-  digitalWrite(STEP_EN_BOT, LOW);
+  initialize_steppers()
 }
 
 void setupPheris()
 {
   pinMode(MID2TOP, INPUT);
   pinMode(BOT2TOP, INPUT);
+  pinMode(LED_BUITIN, OUTPUT);
 }
 
 void setup()
 {
-  // Serial.begin(57600); 
   setupMotors();  
   setupPheris();
   // ROSSERIAL with Jetson
