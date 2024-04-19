@@ -1,7 +1,7 @@
 #include "_wt901c.h"
 #include <HardwareSerial.h> //for rs485 comm
 #define RXD2 5
-#define TXD2 17
+#define TXD2 18
 HardwareSerial rs485(2); // rxtx mode 2 of 0,1,2
 
 short recData1[12];
@@ -15,16 +15,16 @@ float diffBuffer[3][3];
 
 /*
  * buffer structure
- **********************************************************************
- *           dev1[x] | dev1[y] | dev1[z] | dev2[x] | dev2[y] | dev2[z] |
- *           -----------------------------------------------------------
- *accel      |       |         |         |         |         |         |
- *           -----------------------------------------------------------
- *angle      |       |         |         |         |         |         |
- *           -----------------------------------------------------------
- *angularvel |       |         |         |         |         |         |
- *           -----------------------------------------------------------
- ***********************************************************************
+ **********************************************
+ *           dev1[x] | dev1[y] | dev1[z] |
+ *           -----------------------------
+ *accel      |       |         |         |
+ *           -----------------------------
+ *angle      |       |         |         |
+ *           -----------------------------
+ *angularvel |       |         |         |
+ *           -----------------------------
+ **********************************************
  */
 
 static float accDiff[6];
@@ -68,32 +68,32 @@ int rs485_receive(short recv[], int num){
 
 void calibrateAcc(){
       Serial.println("---------- Acceleration Calibration Init ----------");
-      sendCommand(unlockMaster1,1);
+      sendCommand(unlockMaster2,1);
       delay(500);
-      sendCommand(accCalmode1,1);
+      sendCommand(accCalmode2,1);
       delay(6000);
-      sendCommand(setNormal1,1);
+      sendCommand(setNormal2,1);
       delay(1000);
-      sendCommand(saveConfig1,1);
+      sendCommand(saveConfig2,1);
       delay(1000);
   }
   
 void calibrateMag(){
       Serial.println("---------- Magnetic Calibration Init ----------");
-      sendCommand(unlockMaster1,1);
+      sendCommand(unlockMaster2,1);
       delay(500);
-      sendCommand(magCalmode1,1);
+      sendCommand(magCalmode2,1);
       Serial.println("---------- Slowly rotate in 3 axis ----------");
       delay(5000);
       Serial.println("---------- May stop now :) ----------");
-      sendCommand(setNormal1,1);
+      sendCommand(setNormal2,1);
       delay(1000);
-      sendCommand(saveConfig1,1);
+      sendCommand(saveConfig2,1);
       delay(1000);  
   }
 
 void readAcceleration(){
-    sendCommand(readAcc1,0);
+    sendCommand(readAcc2,0);
     //Serial.println("Acceleration");
     
     if(rs485_receive(recData1, 11) != -1){
@@ -114,7 +114,7 @@ void readAcceleration(){
 
 
 void readSensorAngle(){
-    sendCommand(readAngle1,0);
+    sendCommand(readAngle2,0);
     //Serial.println("Angle");
     
     if(rs485_receive(recData1, 11) != -1){
@@ -135,7 +135,7 @@ void readSensorAngle(){
 
 
 void readAngularVelocity(){
-    sendCommand(readAngVel1,0);
+    sendCommand(readAngVel2,0);
     //Serial.println("Angular Velocity");
     
     if(rs485_receive(recData1, 11) != -1){
@@ -228,17 +228,26 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   rs485.flush();
-  if(++flag==1){
-    Serial.println("WT901C485 read");
-    readSensor(initBuffer);
-    for(int i = 0;i<3;i++){
-      for(int j = 0; j<6;j++){
+//  if(++flag==1){
+//    Serial.println("WT901C485 read");
+//    readSensor(initBuffer);
+//    for(int i = 0;i<3;i++){
+//      for(int j = 0; j<3;j++){
+//        Serial.print(initBuffer[i][j]);
+//        Serial.print("  ");       
+//        }
+//       Serial.println();
+//      }
+//    readSensor(prevBuffer);
+//    delay(500);
+//  }
+  readSensor(initBuffer);
+  for(int i = 0;i<3;i++){
+      for(int j = 0; j<3;j++){
         Serial.print(initBuffer[i][j]);
         Serial.print("  ");       
         }
        Serial.println();
       }
-    readSensor(prevBuffer);
-    delay(500);
-  }
+    delay(3000);
 }

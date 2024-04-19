@@ -21,14 +21,14 @@ void setupMotors()
   // BLDC
   initialize_bldc();
   // STEPPER
-  initialize_steppers()
+  initialize_steppers();
 }
 
 void setupPheris()
 {
   pinMode(MID2TOP, INPUT);
   pinMode(BOT2TOP, INPUT);
-  pinMode(LED_BUITIN, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void setup()
@@ -40,6 +40,11 @@ void setup()
   n.advertise(testcon); // to be removed
   n.advertise(rosduino);
   n.subscribe(subCmdVel);
+
+  // fb_control(0,170);
+  mid2top();
+  delay(3000);
+  bot2top();
 }
 
 void loop()

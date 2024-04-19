@@ -32,9 +32,10 @@
 #define STEP_STEP_BOT  36 // CLK+ 5
 #define STEP_EN_BOT    38   // EN+  8
 
-#define MID2TOP     50
-#define BOT2TOP     52
-#define upcount     10
+#define MID2TOP          50
+#define BOT2TOP          52
+#define upcount           1
+#define STEPS_PER_REV  1000
 /////////////////////////////////////////
 
 //////////// ARDUINO CONFIG /////////////

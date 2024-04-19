@@ -63,7 +63,7 @@ void lr_control(int dir, int speed)
   }
   current_lr_speed = speed;
 
-  // 0 : left, 1 : right
+  // 0 : right, 1 : left
   if(dir == 0){
     digitalWrite(DIR1, LOW);
     digitalWrite(DIR2, HIGH);
@@ -81,65 +81,39 @@ void lr_control(int dir, int speed)
   }
 }
 
+// TODO : 감속 시간 맞추기
 void turn_off_motor()
-{
+{ 
+  int temp = current_fb_speed;
+  if(current_fb_speed>=current_lr_speed){
+    temp = current_lr_speed;
+  }
+
   // Slowly decrease motor speed
-  if(current_fb_speed > 150){
-    for (int i = current_fb_speed; i >= 150; i -= 5) {
+  if((current_fb_speed > 150)||(current_lr_speed > 150)){
+    for (int i = temp; i >= 150; i -= 5) {
       analogWrite(SPEED_IN1, i);
-      delay(250);
-      }
-    }
-  if(current_lr_speed > 150){
-    for (int i = current_lr_speed; i >= 150; i -= 5) {
       analogWrite(SPEED_IN2, i);
       delay(250);
-      }
     }
+  }
+
   // Turn motor off
   digitalWrite(START_STOP1, HIGH);
   digitalWrite(START_STOP2, HIGH);
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
-// 직진신호, 1초 대기, 회전신호 중첩
-void test_case1()
+
+
+
+
+// 직진신호, 무대기, 회전신호 중첩 || SUCCESS
+void test_case3()
 {
-  fb_control(0,190);
-  delay(1000);
-  digitalWrite(LED_BUITIN, HIGH);
+  fb_control(0,180);
+  digitalWrite(LED_BUILTIN, HIGH);
   lr_control(0,170); // left : 190 - 30 , right : 190 + 30
   delay(3000);
   turn_off_motor();
 }
-
-// 회전신호, 1초 대기, 직진신호 중첩
-void test_case2()
-{
-  fb_control(0,190);
-  // delay(1000);
-  digitalWrite(LED_BUITIN, HIGH);
-  lr_control(0,170); // left : 190 - 30 , right : 190 + 30
-  delay(3000);
-  turn_off_motor();
-}
-
-// 직진신호, 무대기, 회전신호 중첩
-void test_case1()
-{
-  fb_control(0,190);
-  digitalWrite(LED_BUITIN, HIGH);
-  lr_control(0,170); // left : 190 - 30 , right : 190 + 30
-  delay(3000);
-  turn_off_motor();
-}
-
-// 회전신호, 무대기, 직진신호 중첩
-void test_case4()
-{
-  fb_control(0,190);
-  digitalWrite(LED_BUITIN, HIGH);
-  lr_control(0,170); // left : 190 - 30 , right : 190 + 30
-  delay(3000);
-  turn_off_motor();
-}
-#endif

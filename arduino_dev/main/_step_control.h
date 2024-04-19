@@ -6,8 +6,6 @@
 // #define STEP_STEP 24 // CLK+ 5
 // #define STEP_EN 26   // EN+  8
 
-const int stepsPerRevolution = 1600;
-
 int angle = 0;
 int step = 0;
 int stepDelay = 500;
