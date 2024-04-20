@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="cartrasche_teleop" type="cartrasche_teleop_key" name="cartrasche_teleop_keyboard"  output="screen">
+  </node>
+</launch>

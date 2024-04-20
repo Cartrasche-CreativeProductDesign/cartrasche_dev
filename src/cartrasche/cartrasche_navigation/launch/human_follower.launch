@@ -1,0 +1,7 @@
+<launch>
+    <!-- Load the configuration parameters -->
+    <rosparam file="$(find cartrasche_navigation)/param/camera.yaml" command="load"/>
+
+    <!-- Launch the human follower node -->
+    <node name="human_follower" pkg="cartrasche_navigation" type="follow_human.py" output="screen"/>
+</launch>
