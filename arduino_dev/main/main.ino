@@ -13,6 +13,7 @@
 
 // SUbscriber Declaration
 ros::Subscriber<geometry_msgs::Twist> subCmdVel("cmd_vel", &cmdvelCallback );
+ros::Subscriber<std_msgs::Int32> subSwitch("switch_tray", &stCallback );
 // Publisher Declaration
 char heartbeat[18] = "arduino heartbeat";
 ros::Publisher testcon("testcon", &str_msg);

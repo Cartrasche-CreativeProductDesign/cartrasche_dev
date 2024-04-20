@@ -5,6 +5,7 @@
 #define WHEEL_RAD     0.056 // m
 #define PI            3.1415926535897932384626433832795
 #define TWOPIRAD      0.352
+#define WHEELBASE     0.3228
 #define VEL_MAX       30 // m/s
 #define ANG_MAX       30 // deg
 ////////////////////////////////////////
