@@ -5,6 +5,8 @@
 
 int current_fb_speed;
 int current_lr_speed;
+float current_linvel;
+float current_angvel;
 
 void initialize_bldc()
 {
@@ -101,14 +103,16 @@ void turn_off_motor()
 }
 
 int calculateSPeed(float linVel){
+  current_linvel = linVel
   // long intVel = int(trunc(linVel))
-  double calc = (((linVel*300)/(TWOPIRAD)-50)/29)+153;
+  double calc = ((linVel*300)/(TWOPIRAD)-50)/29+153;
   int AnalogOut = int(trunc(calc));
   return AnalogOut;
 }
 
 int calculateAngle(float angVel){
-  double calc = (((angVel*300)/(TWOPIRAD)-50)/29)+153;// Change
+  // angvel is del v / L
+  double calc = ((300*angVel*WHEELBASE)/(2*TWOPIRAD) - 50)/29 + 153;// Change
   int AnalogOut = int(trunc(calc));
   return AnalogOut;
 }
