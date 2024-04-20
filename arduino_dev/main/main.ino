@@ -7,6 +7,7 @@
 
 #include "config.h"
 #include "_step_control.h"
+#include "_led_control.h"
 // #include "_motor_control.h"
 #include "_ros_control.h"
 
@@ -21,14 +22,14 @@ void setupMotors()
   // BLDC
   initialize_bldc();
   // STEPPER
-  initialize_steppers()
+  initialize_steppers();
 }
 
 void setupPheris()
 {
   pinMode(MID2TOP, INPUT);
   pinMode(BOT2TOP, INPUT);
-  pinMode(LED_BUITIN, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void setup()
@@ -40,6 +41,11 @@ void setup()
   n.advertise(testcon); // to be removed
   n.advertise(rosduino);
   n.subscribe(subCmdVel);
+
+  // fb_control(0,170);
+  mid2top();
+  delay(3000);
+  bot2top();
 }
 
 void loop()
@@ -47,7 +53,7 @@ void loop()
   str_msg.data = heartbeat;
   testcon.publish(&str_msg);
   n.spinOnce();
-  delay(1000);
+  delay(500);
 
   M2T_bs = digitalRead(MID2TOP);
   B2T_bs = digitalRead(BOT2TOP);

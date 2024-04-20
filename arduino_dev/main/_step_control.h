@@ -6,8 +6,6 @@
 // #define STEP_STEP 24 // CLK+ 5
 // #define STEP_EN 26   // EN+  8
 
-const int stepsPerRevolution = 1600;
-
 int angle = 0;
 int step = 0;
 int stepDelay = 500;
@@ -36,7 +34,7 @@ void initialize_steppers(){
 // push up the link
 void spinUp(){
     digitalWrite(STEP_DIR, LOW);
-    for(int i  = 0; i < upcount*stepsPerRevolution; i++){
+    for(int i  = 0; i < upcount*STEPS_PER_REV; i++){
       digitalWrite(STEP_STEP, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP, LOW);
@@ -47,7 +45,7 @@ void spinUp(){
 // let down the link
 void spinDown(){
     digitalWrite(STEP_DIR, HIGH);
-    for(int i  = 0; i < upcount*stepsPerRevolution; i++){
+    for(int i  = 0; i < upcount*STEPS_PER_REV; i++){
       digitalWrite(STEP_STEP, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP, LOW);
@@ -58,7 +56,7 @@ void spinDown(){
 // rotate top stepper once
 void rotateTop(){
     digitalWrite(STEP_DIR_TOP, HIGH); // direction check later
-    for(int i  = 0; i < stepsPerRevolution; i++){
+    for(int i  = 0; i < STEPS_PER_REV; i++){
       digitalWrite(STEP_STEP_TOP, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP_TOP, LOW);
@@ -69,7 +67,7 @@ void rotateTop(){
 // rotate bottom stepper once
 void rotateBot(){
     digitalWrite(STEP_DIR_BOT, HIGH);
-    for(int i  = 0; i < stepsPerRevolution; i++){
+    for(int i  = 0; i < STEPS_PER_REV; i++){
       digitalWrite(STEP_STEP_BOT, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP_BOT, LOW);
@@ -89,32 +87,6 @@ void bot2top(){
   rotateBot();
   delay(500);
   mid2top();
-}
-
-
-void STEP_TEST(){
-  if (checkAngle == 0) {a = +1; }
-  if (checkAngle == 360) {a = -1; }
-
-  angle = angle + a;
-  a = angle;
-  step = map(a, 0, 360, 0, stepsPerRevolution);
-
-    digitalWrite(STEP_DIR, LOW);
-    for(int i  = 0; i < 5*stepsPerRevolution; i++){
-      digitalWrite(STEP_STEP, HIGH);
-      delayMicroseconds(stepDelay);
-      digitalWrite(STEP_STEP, LOW);
-      delayMicroseconds(stepDelay);
-    }
-
-    digitalWrite(STEP_DIR, HIGH);
-    for(int i  = 0; i < 5*stepsPerRevolution; i++){
-      digitalWrite(STEP_STEP, HIGH);
-      delayMicroseconds(stepDelay);
-      digitalWrite(STEP_STEP, LOW);
-      delayMicroseconds(stepDelay);
-    }
 }
 
 #endif
