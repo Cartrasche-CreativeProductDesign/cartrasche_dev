@@ -2,14 +2,10 @@
 #define _STEP_CONTROL_H
 
 #include "config.h"
-// #define STEP_DIR 22  // CW+  2
-// #define STEP_STEP 24 // CLK+ 5
-// #define STEP_EN 26   // EN+  8
+#include "_led_control.h"
 
-int angle = 0;
 int step = 0;
 int stepDelay = 500;
-int checkAngle = 0;
 int a = 0;
 
 // button state

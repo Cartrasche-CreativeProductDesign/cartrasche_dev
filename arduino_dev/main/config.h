@@ -51,6 +51,9 @@
 //////////// ARDUINO CONFIG /////////////
 #define RELAY        23
 #define LED_BUILTIN  13
+#define LED_UNO      25
+#define LED_DOS      27
+#define LED_TRES     29
 /////////////////////////////////////////
 
 #endif
