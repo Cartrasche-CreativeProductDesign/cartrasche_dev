@@ -1,6 +1,16 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+///////////// INCLUDE CONFIG /////////////
+#include <Arduino.h>
+#include <ros.h>
+#include <std_msgs/Int32.h>
+#include <std_msgs/String.h>
+#include <std_msgs/Empty.h>
+#include <geometry_msgs/Twist.h>
+#include <SoftwareSerial.h>
+////////////////////////////////////////
+
 ///////////// ROBOT CONFIG /////////////
 #define WHEEL_RAD     0.056 // m
 #define PI            3.1415926535897932384626433832795
@@ -51,6 +61,9 @@
 //////////// ARDUINO CONFIG /////////////
 #define RELAY        23
 #define LED_BUILTIN  13
+#define LED_UNO      25
+#define LED_DOS      27
+#define LED_TRES     29
 /////////////////////////////////////////
 
 #endif

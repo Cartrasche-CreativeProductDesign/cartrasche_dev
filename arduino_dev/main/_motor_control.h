@@ -2,11 +2,10 @@
 #define _MOTOR_CONTROL_H
 
 #include "config.h"
+#include "_led_control.h"
 
 int current_fb_speed;
 int current_lr_speed;
-float current_linvel;
-float current_angvel;
 
 void initialize_bldc()
 {
@@ -102,17 +101,14 @@ void turn_off_motor()
   digitalWrite(LED_BUILTIN, LOW);
 }
 
-int calculateSPeed(float linVel){
-  current_linvel = linVel
-  // long intVel = int(trunc(linVel))
-  double calc = ((linVel*300)/(TWOPIRAD)-50)/29+153;
+int calculateSPeed(unsigned char linVel){
+  float calc = ((atof(linVel)*300)/(TWOPIRAD)-50)/29+153;
   int AnalogOut = int(trunc(calc));
   return AnalogOut;
 }
 
-int calculateAngle(float angVel){
-  // angvel is del v / L
-  double calc = ((300*angVel*WHEELBASE)/(2*TWOPIRAD) - 50)/29 + 153;// Change
+int calculateAngle(unsigned char angVel){
+  float calc = ((300*atof(angVel)*WHEELBASE)/(2*TWOPIRAD) - 50)/29 + 153;
   int AnalogOut = int(trunc(calc));
   return AnalogOut;
 }
