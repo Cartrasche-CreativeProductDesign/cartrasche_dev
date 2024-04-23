@@ -1,10 +1,5 @@
 #ifndef _ROS_CONTROL_H
 #define _ROS_CONTROL_H
-#include <ros.h>
-#include <std_msgs/Int32.h>
-#include <std_msgs/String.h>
-#include <std_msgs/Empty.h>
-#include <geometry_msgs/Twist.h>
 #include "config.h"
 #include "_motor_control.h"
 
@@ -25,6 +20,8 @@ void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
   float angz = cmd_vel.angular.z;
   str_msg.data = cmdvelcallback;
   rosduino.publish(&str_msg);
+  String velstring = String(cmd_vel.linear.x);
+  n.loginfo(velstring.c_str());
 
   int spd = calculateSPeed(abs(linx));
   int ang = calculateAngle(abs(angz));
