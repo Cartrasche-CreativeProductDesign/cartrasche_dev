@@ -6,9 +6,7 @@
 // ROS usage
 ros::NodeHandle n;
 std_msgs::String str_msg;
-//std_msgs::Int32 int_msg;
 ros::Publisher rosduino("rosduino", &str_msg);
-//ros::Publisher velocity("velocity", &int_msg);
 char cmdvelcallback[18] = "rcvd cmdvel";
 char stcallback[18] = "rcvd st";
 
