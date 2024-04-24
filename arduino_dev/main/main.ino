@@ -35,6 +35,7 @@ void setup()
   n.initNode();
   n.advertise(testcon); // to be removed
   n.advertise(rosduino);
+  n.advertise(rosduino);
   n.subscribe(subCmdVel);
 
   // fb_control(0,170);
