@@ -9,8 +9,8 @@
 ros::Subscriber<geometry_msgs::Twist> subCmdVel("cmd_vel", &cmdvelCallback );
 ros::Subscriber<std_msgs::Int32> subSwitch("switch_tray", &stCallback );
 // Publisher Declaration
-char heartbeat[18] = "arduino heartbeat";
-ros::Publisher testcon("testcon", &str_msg);
+char hb[18] = "arduino heartbeat";
+ros::Publisher heartbeat("heartbeat", &str_msg);
 
 void setupMotors()
 {
@@ -33,22 +33,18 @@ void setup()
   setupPheris();
   // ROSSERIAL with Jetson
   n.initNode();
-  n.advertise(testcon); // to be removed
+  n.advertise(heartbeat);
   n.advertise(rosduino);
   n.subscribe(subCmdVel);
-
-  // fb_control(0,170);
-  mid2top();
-  delay(3000);
-  bot2top();
+  n.subscribe(subSwitch);
 }
 
 void loop()
 { 
-  str_msg.data = heartbeat;
-  testcon.publish(&str_msg);
+  str_msg.data = hb;
+  heartbeat.publish(&str_msg);
   n.spinOnce();
-  delay(500);
+  delay(1000);
 
   M2T_bs = digitalRead(MID2TOP);
   B2T_bs = digitalRead(BOT2TOP);

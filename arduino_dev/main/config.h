@@ -18,6 +18,7 @@
 #define WHEELBASE     0.3228
 #define VEL_MAX       30 // m/s
 #define ANG_MAX       30 // deg
+#define EPSILON       0.000001
 ////////////////////////////////////////
 
 ////////////// BLDC MOTOR //////////////
