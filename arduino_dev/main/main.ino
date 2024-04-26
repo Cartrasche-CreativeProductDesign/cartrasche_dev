@@ -25,6 +25,7 @@ void setupPheris()
   pinMode(MID2TOP, INPUT);
   pinMode(BOT2TOP, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
+  initializeLED();
 }
 
 void setup()
@@ -37,6 +38,7 @@ void setup()
   n.advertise(rosduino);
   n.subscribe(subCmdVel);
   n.subscribe(subSwitch);
+  mid2top();
 }
 
 void loop()

@@ -9,6 +9,7 @@
 #include <std_msgs/Empty.h>
 #include <geometry_msgs/Twist.h>
 #include <SoftwareSerial.h>
+#include <Adafruit_NeoPixel.h>
 ////////////////////////////////////////
 
 ///////////// ROBOT CONFIG /////////////
@@ -55,16 +56,17 @@
 
 #define MID2TOP          50
 #define BOT2TOP          52
-#define upcount           1
-#define STEPS_PER_REV  1000 // 1/8 step mode shall be 
+#define upcount           6
+#define STEPS_PER_REV  1000 // 1/8 step mode shall be  // 1000 , 1 uc -> 5mm
+#define STEPS_PER_REV2 1600
 /////////////////////////////////////////
 
 //////////// ARDUINO CONFIG /////////////
 #define RELAY        23
 #define LED_BUILTIN  13
-#define LED_UNO      25
-#define LED_DOS      27
-#define LED_TRES     29
+
+#define LED_PIN      25
+#define LED_CNT      12 
 /////////////////////////////////////////
 
 #endif
