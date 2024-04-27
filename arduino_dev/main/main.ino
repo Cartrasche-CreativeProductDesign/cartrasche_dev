@@ -25,6 +25,7 @@ void setupPheris()
   pinMode(MID2TOP, INPUT);
   pinMode(BOT2TOP, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
+  initializeLED();
 }
 
 void setup()
@@ -37,6 +38,7 @@ void setup()
   n.advertise(rosduino);
   n.subscribe(subCmdVel);
   n.subscribe(subSwitch);
+//  lr_control(170);/
 }
 
 void loop()
@@ -44,10 +46,10 @@ void loop()
   str_msg.data = hb;
   heartbeat.publish(&str_msg);
   n.spinOnce();
-  delay(1000);
+  delay(500);
 
-  M2T_bs = digitalRead(MID2TOP);
-  B2T_bs = digitalRead(BOT2TOP);
+  int M2T_bs = digitalRead(MID2TOP);
+  int B2T_bs = digitalRead(BOT2TOP);
 
   if(M2T_bs == HIGH){
     mid2top();
