@@ -38,6 +38,7 @@ void setup()
   n.advertise(rosduino);
   n.subscribe(subCmdVel);
   n.subscribe(subSwitch);
+//  lr_control(170);/
 }
 
 void loop()

@@ -85,7 +85,7 @@ void turn_off_motor()
       }
     if(current_lr_speed > 150){
       current_fb_speed -= 5;
-      analogWrite(SPEED_IN1, current_fb_speed);
+      analogWrite(SPEED_IN1, current_lr_speed);
       }
     delay(100);
   }
