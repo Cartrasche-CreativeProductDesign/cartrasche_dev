@@ -5,8 +5,8 @@
 #include "_led_control.h"
 
 int step = 0;
-int stepDelayShort = 200;
-int stepDelay = 1000;
+int stepDelayShort = 350;
+int stepDelay = 1200;
 int a = 0;
 
 // button state
