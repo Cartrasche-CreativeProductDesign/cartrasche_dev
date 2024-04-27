@@ -1,23 +1,34 @@
 <?xml version="1.0" ?>
 <robot name="cartrasche" xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-<transmission name="Rotate1_tran">
+<transmission name="회전 1_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Rotate1">
+  <joint name="회전 1">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
-  <actuator name="Rotate1_actr">
+  <actuator name="회전 1_actr">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
-<transmission name="Rotate2_tran">
+<transmission name="회전 2_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Rotate2">
+  <joint name="회전 2">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
-  <actuator name="Rotate2_actr">
+  <actuator name="회전 2_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="회전 3_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="회전 3">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="회전 3_actr">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
