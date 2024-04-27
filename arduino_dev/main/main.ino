@@ -38,7 +38,6 @@ void setup()
   n.advertise(rosduino);
   n.subscribe(subCmdVel);
   n.subscribe(subSwitch);
-//  lr_control(170);/
 }
 
 void loop()
@@ -53,8 +52,10 @@ void loop()
 
   if(M2T_bs == HIGH){
     mid2top();
+    delay(1000);
   }
   if(B2T_bs == HIGH){
     bot2top();
+    delay(1000);
   }
 }
