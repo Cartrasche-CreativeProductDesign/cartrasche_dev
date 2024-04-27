@@ -85,7 +85,7 @@ void turn_off_motor()
       }
     if(current_lr_speed > 150){
       current_fb_speed -= 5;
-      analogWrite(SPEED_IN1, current_fb_speed);
+      analogWrite(SPEED_IN1, current_lr_speed);
       }
     delay(100);
   }
@@ -102,6 +102,7 @@ int calculateSPeed(float linVel){
 
 int calculateAngle(float angVel){
   if(angVel>0){
+    // 계산 다시
     float calc = ((300*angVel*WHEELBASE)/(2*TWOPIRAD) - 50)/29 + 153;
     int AnalogOut = int(trunc(calc));
     return AnalogOut;

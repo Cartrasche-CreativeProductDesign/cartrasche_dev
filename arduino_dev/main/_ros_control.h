@@ -22,27 +22,44 @@ void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
   int spd = calculateSPeed(abs(linx));
   int ang = calculateAngle(angz);
   
-  // String velstring2 = String(spd);
+  String velstring2 = String(spd);
   // n.loginfo(velstring2.c_str());  
-  // String velstring3 = String(ang);
+  String velstring3 = String(ang);
   // n.loginfo(velstring3.c_str());
   
   if(linx > 0.0){
+    n.loginfo("linear fwd");
     fb_control(0, spd);
     delay(10);
+    if(abs(angz) > 0.0){
+      n.loginfo("angular");
+      lr_control(ang);
+      delay(10);
+    }
   }
   else if(linx < 0.0){
+    n.loginfo("linear bwd");
     fb_control(1, spd);
     delay(10);
+    if(abs(angz) > 0.0){
+      n.loginfo("angular");
+      lr_control(ang);
+      delay(10);
+    }
   }
   else{
-    turn_off_motor();
+    n.loginfo(";inear zero");
+    if(abs(angz) > 0.0){
+      n.loginfo("angular");
+      lr_control(ang);
+      delay(10);
+    }
+    else{
+      n.loginfo("stop");
+      turn_off_motor();
+    }
   }
 
-  if(abs(angz) > 0.0){
-    lr_control(ang);
-    delay(10);
-  }
 }
 
 void stCallback(const std_msgs::Int32& switch_tray){

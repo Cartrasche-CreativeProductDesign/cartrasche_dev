@@ -5,7 +5,8 @@
 #include "_led_control.h"
 
 int step = 0;
-int stepDelay = 500;
+int stepDelayShort = 350;
+int stepDelay = 1200;
 int a = 0;
 
 // button state
@@ -32,9 +33,9 @@ void spinUp(){
     digitalWrite(STEP_DIR, LOW);
     for(int i  = 0; i < upcount*STEPS_PER_REV; i++){
       digitalWrite(STEP_STEP, HIGH);
-      delayMicroseconds(stepDelay);
+      delayMicroseconds(stepDelayShort);
       digitalWrite(STEP_STEP, LOW);
-      delayMicroseconds(stepDelay);
+      delayMicroseconds(stepDelayShort);
     }
 }
 
@@ -43,16 +44,16 @@ void spinDown(){
     digitalWrite(STEP_DIR, HIGH);
     for(int i  = 0; i < upcount*STEPS_PER_REV; i++){
       digitalWrite(STEP_STEP, HIGH);
-      delayMicroseconds(stepDelay);
+      delayMicroseconds(stepDelayShort);
       digitalWrite(STEP_STEP, LOW);
-      delayMicroseconds(stepDelay);
+      delayMicroseconds(stepDelayShort);
     }
 }
 
 // rotate top stepper once
 void rotateTop(){
     digitalWrite(STEP_DIR_TOP, HIGH); // direction check later
-    for(int i  = 0; i < STEPS_PER_REV; i++){
+    for(int i  = 0; i < STEPS_PER_REV2; i++){
       digitalWrite(STEP_STEP_TOP, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP_TOP, LOW);
@@ -63,7 +64,7 @@ void rotateTop(){
 // rotate bottom stepper once
 void rotateBot(){
     digitalWrite(STEP_DIR_BOT, HIGH);
-    for(int i  = 0; i < STEPS_PER_REV; i++){
+    for(int i  = 0; i < STEPS_PER_REV2; i++){
       digitalWrite(STEP_STEP_BOT, HIGH);
       delayMicroseconds(stepDelay);
       digitalWrite(STEP_STEP_BOT, LOW);
@@ -73,15 +74,15 @@ void rotateBot(){
 
 void mid2top(){
   spinUp();
-  delay(500);
+  delay(200);
   rotateTop();
-  delay(500);
+  delay(200);
   spinDown();
 }
 
 void bot2top(){
   rotateBot();
-  delay(500);
+  delay(200);
   mid2top();
 }
 
