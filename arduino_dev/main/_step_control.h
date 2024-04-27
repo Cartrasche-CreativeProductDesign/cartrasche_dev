@@ -5,6 +5,7 @@
 #include "_led_control.h"
 
 int step = 0;
+int stepDelayShort = 200;
 int stepDelay = 1000;
 int a = 0;
 
@@ -32,9 +33,9 @@ void spinUp(){
     digitalWrite(STEP_DIR, LOW);
     for(int i  = 0; i < upcount*STEPS_PER_REV; i++){
       digitalWrite(STEP_STEP, HIGH);
-      delayMicroseconds(stepDelay);
+      delayMicroseconds(stepDelayShort);
       digitalWrite(STEP_STEP, LOW);
-      delayMicroseconds(stepDelay);
+      delayMicroseconds(stepDelayShort);
     }
 }
 
@@ -43,9 +44,9 @@ void spinDown(){
     digitalWrite(STEP_DIR, HIGH);
     for(int i  = 0; i < upcount*STEPS_PER_REV; i++){
       digitalWrite(STEP_STEP, HIGH);
-      delayMicroseconds(stepDelay);
+      delayMicroseconds(stepDelayShort);
       digitalWrite(STEP_STEP, LOW);
-      delayMicroseconds(stepDelay);
+      delayMicroseconds(stepDelayShort);
     }
 }
 
