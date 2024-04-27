@@ -22,3 +22,10 @@ ARDUINO
 - Subscribe : /switch_tray [std_msgs::Int32] -> 1 or 2
 - Publish   : /rosduino [std_msgs::String] -> callback msg for received topic
 - Publish   : /heartbeat [std_msgs::String] -> heartbeat
+
+## LED INDEX
+- WHITE : DEFAULT
+- BLUE : MID to TOP
+- GREEN : BOTTOM to TOP
+- MAGENTA : On Drive Mode
+- YELLOW : On Manual Mode

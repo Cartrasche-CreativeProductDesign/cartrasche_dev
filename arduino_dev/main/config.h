@@ -66,7 +66,8 @@
 #define LED_BUILTIN  13
 
 #define LED_PIN      25
-#define LED_CNT      12 
+#define NUMPIXELS    12 
+#define PIXEL_DELAY  100
 /////////////////////////////////////////
 
 #endif
