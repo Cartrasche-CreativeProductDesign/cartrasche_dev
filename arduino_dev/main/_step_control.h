@@ -73,21 +73,21 @@ void rotateBot(){
 }
 
 void mid2top(){
-  show_blue(200);
+  show_blue(100);
   spinUp();
   delay(200);
   rotateTop();
   delay(200);
   spinDown();
-  show_white(200);
+  show_white(100);
 }
 
 void bot2top(){
-  show_green(200);
+  show_green(100);
   rotateBot();
   delay(200);
   mid2top();
-  show_white(200);
+  show_white(100);
 }
 
 #endif
