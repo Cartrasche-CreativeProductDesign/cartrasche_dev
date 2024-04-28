@@ -4,8 +4,8 @@
 #include "config.h"
 #include "_led_control.h"
 
-int current_fb_speed;
-int current_lr_speed;
+int current_fb_speed = 125;
+int current_lr_speed = 125;
 
 void initialize_bldc()
 {
@@ -25,9 +25,9 @@ void initialize_bldc()
   digitalWrite(START_STOP2, HIGH); //stop
 }
 
-// 0 ~ 100 : fwd
-// 100 ~ 150 : stop
-// 150 ~250 : bwd 
+// 0 ~ 102 : fwd => BACKWARD
+// 100 ~ 152 : stop 
+// 153 ~250 : bwd => FORWARD
 void fb_control(int dir, int speed)
 {
   if(speed>250){
@@ -54,7 +54,7 @@ void fb_control(int dir, int speed)
 
 // 0 ~ 102 : left
 // 103 ~ 152 : stop
-// 153 ~250 : right 
+// 153 ~ 250 : right 
 void lr_control(int speed)
 {
   // Turn motor on
@@ -63,8 +63,8 @@ void lr_control(int speed)
   }
   current_lr_speed = speed;
 
-  digitalWrite(DIR1, LOW);
-  digitalWrite(DIR2, HIGH);
+//  digitalWrite(DIR1, LOW);
+//  digitalWrite(DIR2, HIGH);
 
   digitalWrite(START_STOP1, LOW);
   digitalWrite(START_STOP2, LOW);
@@ -72,27 +72,36 @@ void lr_control(int speed)
   analogWrite(SPEED_IN2, speed);
 }
 
+
 void turn_off_motor()
 { 
-  int temp = current_fb_speed;
-  if(current_fb_speed>=current_lr_speed){
-    temp = current_lr_speed;
-  }
-  while((current_fb_speed <= 150)&&(current_lr_speed <= 150)){
-    if(current_fb_speed > 150){
+  while(((current_fb_speed < 100) || (current_fb_speed > 150)) || ((current_lr_speed < 103) || (current_lr_speed > 152))){ // if the motor is moving in any way,
+    if(current_fb_speed < 100){ // if moving forward 
+      current_fb_speed += 5;
+      analogWrite(SPEED_IN1, current_fb_speed);
+      }
+    else if(current_fb_speed > 150){ // if moving backward 
       current_fb_speed -= 5;
       analogWrite(SPEED_IN1, current_fb_speed);
       }
-    if(current_lr_speed > 150){
-      current_fb_speed -= 5;
-      analogWrite(SPEED_IN1, current_lr_speed);
+      
+    if(current_lr_speed < 103){ // if moving left
+      current_lr_speed += 5;
+      analogWrite(SPEED_IN2, current_lr_speed);
       }
-    delay(10);
+    else if(current_lr_speed > 152){ // if moving right
+      current_lr_speed -= 5;
+      analogWrite(SPEED_IN2, current_lr_speed);
+      }
+    delay(100);
   }
+  current_fb_speed = 125;
+  current_lr_speed = 125;
+  analogWrite(SPEED_IN1, current_fb_speed);
+  analogWrite(SPEED_IN2, current_lr_speed);
   
   digitalWrite(START_STOP1, HIGH);
   digitalWrite(START_STOP2, HIGH);
-  turn_off_led();
 }
 
 int calculateSPeed(float linVel){

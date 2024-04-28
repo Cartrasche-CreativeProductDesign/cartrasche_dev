@@ -26,13 +26,13 @@ void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
   // n.loginfo(velstring2.c_str());  
   String velstring3 = String(ang);
   // n.loginfo(velstring3.c_str());
-  show_violet(200);
+  
   if(linx > 0.0){
     n.loginfo("linear fwd");
     fb_control(0, spd);
     delay(10);
     if(abs(angz) > 0.0){
-      n.loginfo("angular");
+      n.loginfo("angular_1");
       lr_control(ang);
       delay(10);
     }
@@ -42,7 +42,7 @@ void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
     fb_control(1, spd);
     delay(10);
     if(abs(angz) > 0.0){
-      n.loginfo("angular");
+      n.loginfo("angular_2");
       lr_control(ang);
       delay(10);
     }
@@ -50,7 +50,7 @@ void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
   else{
     n.loginfo("linear zero");
     if(abs(angz) > 0.0){
-      n.loginfo("angular");
+      n.loginfo("angular_3");
       lr_control(ang);
       delay(10);
     }
