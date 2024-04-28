@@ -11,6 +11,9 @@ ros::Subscriber<std_msgs::Int32> subSwitch("switch_tray", &stCallback );
 // Publisher Declaration
 char hb[18] = "arduino heartbeat";
 ros::Publisher heartbeat("heartbeat", &str_msg);
+std_msgs::Int16 int_msg;
+ros::Publisher current_fb_speed_pub("current_fb_speed", &int_msg);
+ros::Publisher current_lr_speed_pub("current_lr_speed", &int_msg);
 
 void setupMotors()
 {
@@ -29,7 +32,7 @@ void setupPheris()
 }
 
 void setup()
-{
+{ 
   setupMotors();  
   setupPheris();
   // ROSSERIAL with Jetson
@@ -38,12 +41,21 @@ void setup()
   n.advertise(rosduino);
   n.subscribe(subCmdVel);
   n.subscribe(subSwitch);
+
+  n.advertise(current_fb_speed_pub);
+  n.advertise(current_lr_speed_pub);
 }
 
 void loop()
 { 
   str_msg.data = hb;
   heartbeat.publish(&str_msg);
+
+  int_msg.data = current_fb_speed;
+  current_fb_speed_pub.publish(&int_msg);
+  int_msg.data = current_lr_speed;
+  current_lr_speed_pub.publish(&int_msg);
+  
   n.spinOnce();
   delay(500);
 

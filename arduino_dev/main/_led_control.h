@@ -11,7 +11,7 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, LED_PIN, NEO_GRBW + NEO_
 void initializeLED(){
   pixels.begin();
   for(int i=0;i<NUMPIXELS;i++){
-    pixels.setPixelColor(i,pixels.Color(200,200,200)); 
+    pixels.setPixelColor(i,pixels.Color(100,100,100)); 
   }        
   pixels.show();
   delay(PIXEL_DELAY);

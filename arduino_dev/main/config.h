@@ -5,6 +5,7 @@
 #include <Arduino.h>
 #include <ros.h>
 #include <std_msgs/Int32.h>
+#include <std_msgs/Int16.h>
 #include <std_msgs/String.h>
 #include <std_msgs/Empty.h>
 #include <geometry_msgs/Twist.h>
@@ -46,13 +47,13 @@
 /////////////////////////////////////////
 
 ////////////// ROTATION STEP //////////////
-#define STEP_DIR_TOP   28  // CW+  2
-#define STEP_STEP_TOP  30 // CLK+ 5
-#define STEP_EN_TOP    32   // EN+  8
+#define STEP_DIR_TOP     28  // CW+  2
+#define STEP_STEP_TOP    30 // CLK+ 5
+#define STEP_EN_TOP      32   // EN+  8
 
-#define STEP_DIR_BOT   34  // CW+  2
-#define STEP_STEP_BOT  36 // CLK+ 5
-#define STEP_EN_BOT    38   // EN+  8
+#define STEP_DIR_BOT     34  // CW+  2
+#define STEP_STEP_BOT    36 // CLK+ 5
+#define STEP_EN_BOT      38   // EN+  8
 
 #define MID2TOP          A0
 #define BOT2TOP          A1
@@ -65,7 +66,7 @@
 #define RELAY        23
 #define LED_BUILTIN  13
 
-#define LED_PIN      25
+#define LED_PIN      53
 #define NUMPIXELS    12 
 #define PIXEL_DELAY  100
 /////////////////////////////////////////
