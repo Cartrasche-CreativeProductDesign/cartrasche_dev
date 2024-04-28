@@ -11,12 +11,12 @@ class GoalPoseActionClient:
         rospy.init_node('goal_pose_action_client')
 
         self.action_client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
-        self.action_client.wait_for_server()
+        # self.action_client.wait_for_server()
 
         rospy.loginfo("Connected to move_base action server")
-
+        print("done")
         # Subscribe to a topic where goals are published or get them from parameters
-        self.goal_sub = rospy.Subscriber('/new_goal_pose', PoseStamped, self.handle_new_goal)
+        self.goal_sub = rospy.Subscriber('/goal_pose', PoseStamped, self.handle_new_goal)
 
     def handle_new_goal(self, msg):
         """Handle new goal pose and send it to the move_base action server."""
@@ -50,21 +50,6 @@ class GoalPoseActionClient:
             rospy.loginfo("Goal is pending")
         elif status == 0:
             rospy.loginfo("Goal is waiting to be processed")
-
-
-# Specify the goal pose
-def specify_goal_pose(x, y, theta):
-    goal = MoveBaseGoal()
-    goal.target_pose.header.frame_id = "map"
-    goal.target_pose.header.stamp = rospy.Time.now()
-    goal.target_pose.pose.position.x = x
-    goal.target_pose.pose.position.y = y
-    goal.target_pose.pose.orientation = Quaternion(*quaternion_from_euler(0, 0, theta))
-
-    goal_pose_action_client.send_goal(goal)
-
-# Example usage
-# specify_goal_pose(1.0, 2.0, 0.0)
 
 
 if __name__ == '__main__':

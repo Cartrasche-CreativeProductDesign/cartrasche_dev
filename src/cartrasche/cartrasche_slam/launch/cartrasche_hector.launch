@@ -6,6 +6,7 @@
   <arg name="scan_topic" default="scan"/>
   <arg name="map_size" default="2048"/>
   <arg name="pub_map_odom_transform" default="true"/>
+  <arg name="pub_odometry" default="true"/>
   <arg name="tf_map_scanmatch_transform_frame_name" default="scanmatcher_frame"/>
 
   <!-- Hector mapping -->

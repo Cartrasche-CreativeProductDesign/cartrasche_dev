@@ -1,7 +1,7 @@
 <launch>
   <node name="ydlidar_lidar_publisher"  pkg="ydlidar_ros_driver"  type="ydlidar_ros_driver_node" output="screen" respawn="false" >
     <!-- string property -->
-    <param name="port"         type="string" value="/dev/ydlidar"/>  
+    <param name="port"         type="string" value="/dev/ttyUSB0"/>  
     <param name="frame_id"     type="string" value="laser_frame"/>
     <param name="ignore_array"     type="string" value=""/>
 
@@ -32,31 +32,10 @@
     <param name="range_max"    type="double" value="16.0" />
     <param name="frequency"    type="double" value="10.0"/>
   </node>
-  
-  
-  <arg name="geotiff_map_file_path" default="$(find hector_geotiff)/maps"/>
-
-  <param name="/use_sim_time" value="false"/>
-
- <!-- <node pkg="rviz" type="rviz" name="rviz"
-    args="-d $(find hector_slam_launch)/rviz_cfg/mapping_demo.rviz"/> -->
-
-  <include file="$(find hector_mapping)/launch/mapping_default.launch"/>
-
-  <include file="$(find hector_geotiff_launch)/launch/geotiff_mapper.launch">
-    <arg name="trajectory_source_frame_name" value="scanmatcher_frame"/>
-    <arg name="map_file_path" value="$(arg geotiff_map_file_path)"/>
-  </include>
-
-  
   <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser4"
     args="0.0 0.0 0.5 0.0 0.0 0.0 /base_link /laser_frame 40" />
-    
-    
-  <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
-      <!-- <remap from="scan" to="scan" /> -->
-      <rosparam command="load" file="/home/jetson/cartrasche_dev/src/vision/vision/interpolation_filter_example.yaml" />
-  </node>
-
-
 </launch>
+
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
+      <rosparam command="load" file="$(find sensor)/param/interpolation_filter_example.yaml" />
+  </node>

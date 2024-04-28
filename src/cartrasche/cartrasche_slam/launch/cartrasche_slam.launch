@@ -3,7 +3,7 @@
   <arg name="open_rviz" default="true"/>
 
   <!-- Lidar -->
-  <include file="$(find ydlidar_ros_driver)/launch/lidar.launch" />
+  <!-- <include file="$(find ydlidar_ros_driver)/launch/lidar.launch" /> -->
 
   <!-- Cartrasche -->
   <include file="$(find cartrasche_bringup)/launch/cartrasche_remote.launch" />
