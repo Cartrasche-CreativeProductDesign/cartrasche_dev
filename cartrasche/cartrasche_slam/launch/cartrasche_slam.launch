@@ -1,0 +1,20 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="open_rviz" default="true"/>
+
+  <!-- Lidar -->
+  <include file="$(find sensor)/launch/lidar.launch" />
+
+  <!-- Cartrasche -->
+  <include file="$(find cartrasche_bringup)/launch/cartrasche_remote.launch" />
+  <include file="$(find cartrasche_slam)/launch/cartrasche_hector.launch" />
+  <include file="$(find cartrasche_slam)/launch/cartrasche_tf.launch" />
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find cartrasche_slam)/rviz/cartrasche_hector.rviz"/>
+  </group>
+
+  <!-- <node pkg="hector_map_server" type="hector_map_server" name="hector_map_server" output="screen" /> -->
+</launch>
