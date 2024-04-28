@@ -87,11 +87,12 @@ void turn_off_motor()
       current_fb_speed -= 5;
       analogWrite(SPEED_IN1, current_lr_speed);
       }
-    delay(100);
+    delay(10);
   }
   
   digitalWrite(START_STOP1, HIGH);
   digitalWrite(START_STOP2, HIGH);
+  turn_off_led();
 }
 
 int calculateSPeed(float linVel){

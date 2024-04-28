@@ -26,7 +26,7 @@ void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
   // n.loginfo(velstring2.c_str());  
   String velstring3 = String(ang);
   // n.loginfo(velstring3.c_str());
-  
+  show_violet(200);
   if(linx > 0.0){
     n.loginfo("linear fwd");
     fb_control(0, spd);
@@ -48,7 +48,7 @@ void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
     }
   }
   else{
-    n.loginfo(";inear zero");
+    n.loginfo("linear zero");
     if(abs(angz) > 0.0){
       n.loginfo("angular");
       lr_control(ang);
@@ -57,6 +57,7 @@ void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
     else{
       n.loginfo("stop");
       turn_off_motor();
+      delay(10);
     }
   }
 
