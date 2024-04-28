@@ -1,7 +1,8 @@
 <launch>
   <!-- Arguments -->
-  <arg name="cmd_vel_topic" default="/cmd_vel" />
-  <arg name="odom_topic" default="/odom" />
+  <arg name="cmd_vel" default="/cmd_vel" />
+  <arg name="odom" default="/scanmatch_odom" />
+  <arg name="scan" default="/scan" />
 
   <!-- move_base -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
@@ -12,7 +13,8 @@
     <rosparam file="$(find cartrasche_navigation)/param/global_costmap_params.yaml" command="load" />
     <rosparam file="$(find cartrasche_navigation)/param/move_base_params.yaml" command="load" />
     <rosparam file="$(find cartrasche_navigation)/param/dwa_local_planner_params.yaml" command="load" ns="DWAPlannerROS"/>
-    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
-    <remap from="odom" to="$(arg odom_topic)"/>
+    <remap from="cmd_vel" to="$(arg cmd_vel)"/>
+    <remap from="odom" to="$(arg odom)"/>
+    <remap from="scan" to="$(arg scan)"/>
   </node>
 </launch>
