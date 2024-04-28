@@ -11,6 +11,18 @@ export TURTLEBOT3_MODEL=waffle_pi
 source /home/{$YOUR_DIR}/cartrasche_dev/devel/setup.bash
 ```
 
+## Set as On-Boot Service
+```
+cd cartrasche_dev
+sudo sh set_service.sh
+```
+cartrasche service will run on-boot after reboot
+
+check status with
+```
+sudo systemctl status cartrasche
+```
+
 ## How to Run
 Open two terminals
 ```

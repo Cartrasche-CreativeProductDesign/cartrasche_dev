@@ -55,7 +55,7 @@ void fb_control(int dir, int speed)
 // 0 ~ 102 : left
 // 103 ~ 152 : stop
 // 153 ~ 250 : right 
-void lr_control(int dir, int speed)
+void lr_control(int speed)
 {
   // Turn motor on
   if(speed>250){
@@ -65,10 +65,6 @@ void lr_control(int dir, int speed)
 
 //  digitalWrite(DIR1, LOW);
 //  digitalWrite(DIR2, HIGH);
-  if(dir==1){
-    digitalWrite(DIR1, HIGH);
-    digitalWrite(DIR2, LOW);
-  }
 
   digitalWrite(START_STOP1, LOW);
   digitalWrite(START_STOP2, LOW);
@@ -115,16 +111,17 @@ int calculateSPeed(float linVel){
 }
 
 int calculateAngle(float angVel){
-  // if(angVel>0){
-  float calc = ((300*angVel*WHEELBASE)/(2*TWOPIRAD) - 50)/29 + 153;
-  int AnalogOut = int(trunc(calc));
-  return AnalogOut;
-  // }
-  // else{
-  //   float calc = 102 - ((300*abs(angVel)*WHEELBASE)/(2*TWOPIRAD) - 50)/29;
-  //   int AnalogOut = int(trunc(calc));
-  //   return AnalogOut;
-  // }
+  if(angVel>0){
+    // 계산 다시
+    float calc = ((300*angVel*WHEELBASE)/(2*TWOPIRAD) - 50)/29 + 153;
+    int AnalogOut = int(trunc(calc));
+    return AnalogOut;
+  }
+  else{
+    float calc = 102 - ((300*abs(angVel)*WHEELBASE)/(2*TWOPIRAD) - 50)/29;
+    int AnalogOut = int(trunc(calc));
+    return AnalogOut;
+  }
 }
 
 #endif

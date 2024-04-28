@@ -22,21 +22,16 @@ void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
   int spd = calculateSPeed(abs(linx));
   // int ang = calculateAngle(angz);
   // Modified
-  int ang = calculateAngle(abs(angz));
+  int ang = calculateAngle(angz);
+  
   
   if(linx > 0.0){
     n.loginfo("linear fwd");
     fb_control(0, spd);
     delay(10);
-    if(angz > 0.0){
+    if(abs(angz) > 0.0){
       n.loginfo("angular_1");
-      lr_control(0,ang); // modified original : lr_control(ang);
-      delay(10);
-    }
-    // modified
-    else if(angz < 0.0){
-      n.loginfo("angular_1_reverse");
-      lr_control(1,ang); // modified original : lr_control(ang);
+      lr_control(ang);
       delay(10);
     }
   }
@@ -44,29 +39,17 @@ void cmdvelCallback(const geometry_msgs::Twist& cmd_vel){
     n.loginfo("linear bwd");
     fb_control(1, spd);
     delay(10);
-    if(angz > 0.0){
+    if(abs(angz) > 0.0){
       n.loginfo("angular_2");
-      lr_control(0,ang); // modified original : lr_control(ang);
-      delay(10);
-    }
-    // modified
-    else if(angz < 0.0){
-      n.loginfo("angular_2_reverse");
-      lr_control(1,ang); // modified original : lr_control(ang);
+      lr_control(ang);
       delay(10);
     }
   }
   else{
     n.loginfo("linear zero");
-    if(angz > 0.0){
-      n.loginfo("angular_2");
-      lr_control(0,ang); // modified original : lr_control(ang);
-      delay(10);
-    }
-    // modified
-    else if(angz < 0.0){
-      n.loginfo("angular_2_reverse");
-      lr_control(1,ang); // modified original : lr_control(ang);
+    if(abs(angz) > 0.0){
+      n.loginfo("angular_3");
+      lr_control(ang);
       delay(10);
     }
     else{
