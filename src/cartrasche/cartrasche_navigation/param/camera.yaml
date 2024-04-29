@@ -1,3 +1,0 @@
-human_follower:
-  focal_length_x: 0.80803844  # Focal length of the camera in meters
-  image_width: 640      # Width of the image in pixels
