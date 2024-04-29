@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-///////////// INCLUDE CONFIG /////////////
+///////////////// INCLUDE CONFIG /////////////////
 #include <Arduino.h>
 #include <ros.h>
 #include <std_msgs/Int32.h>
@@ -11,9 +11,9 @@
 #include <geometry_msgs/Twist.h>
 #include <SoftwareSerial.h>
 #include <Adafruit_NeoPixel.h>
-////////////////////////////////////////
+////////////////////////////////////////////////
 
-///////////// ROBOT CONFIG /////////////
+///////////////// ROBOT CONFIG /////////////////
 #define WHEEL_RAD     0.056 // m
 #define PI            3.1415926535897932384626433832795
 #define TWOPIRAD      0.352
@@ -21,9 +21,9 @@
 #define VEL_MAX       30 // m/s
 #define ANG_MAX       30 // deg
 #define EPSILON       0.000001
-////////////////////////////////////////
+////////////////////////////////////////////////
 
-////////////// BLDC MOTOR //////////////
+////////////////// BLDC MOTOR //////////////////
 // 50 ~ 3000 RPM 
 // 0.03V per 1 analogOut 
 // 29RPM per 1 analog Output
@@ -38,15 +38,15 @@
 #define  START_STOP1  11    //   PINK  4
 #define         DIR2  12    //  BROWN 16
 #define  START_STOP2  13    //   PINK 17
-////////////////////////////////////////
+////////////////////////////////////////////////
 
-////////////// SCREW STEP //////////////
+////////////////// SCREW STEP //////////////////
 #define STEP_DIR   22  // CW+  2
 #define STEP_STEP  24 // CLK+ 5
 #define STEP_EN    26   // EN+  8
-/////////////////////////////////////////
+///////////////////////////////////////////////
 
-////////////// ROTATION STEP //////////////
+//////////////// ROTATION STEP ////////////////
 #define STEP_DIR_TOP     28  // CW+  2
 #define STEP_STEP_TOP    30 // CLK+ 5
 #define STEP_EN_TOP      32   // EN+  8
@@ -60,15 +60,15 @@
 #define upcount           6
 #define STEPS_PER_REV  1000 // 1/8 step mode shall be  // 1000 , 1 uc -> 5mm
 #define STEPS_PER_REV2 1600
-/////////////////////////////////////////
+/////////////////////////////////////////////
 
-//////////// ARDUINO CONFIG /////////////
+////////////// ARDUINO CONFIG ///////////////
 #define RELAY        23
 #define LED_BUILTIN  13
 
 #define LED_PIN      53
 #define NUMPIXELS    12 
 #define PIXEL_DELAY  100
-/////////////////////////////////////////
+/////////////////////////////////////////////
 
 #endif

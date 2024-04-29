@@ -63,10 +63,12 @@ void loop()
   int B2T_bs = digitalRead(BOT2TOP);
 
   if(M2T_bs == HIGH){
+    show_blue(100);
     mid2top();
     delay(1000);
   }
   if(B2T_bs == HIGH){
+    show_yellow(100);
     bot2top();
     delay(1000);
   }
