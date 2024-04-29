@@ -73,7 +73,6 @@ void rotateBot(){
 }
 
 void mid2top(){
-  show_blue(100);
   spinUp();
   delay(200);
   rotateTop();
@@ -83,7 +82,6 @@ void mid2top(){
 }
 
 void bot2top(){
-  show_green(100);
   rotateBot();
   delay(200);
   mid2top();
