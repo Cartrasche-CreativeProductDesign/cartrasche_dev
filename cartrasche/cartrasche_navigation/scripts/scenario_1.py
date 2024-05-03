@@ -57,14 +57,16 @@ def scenario():
     pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
     rospy.sleep(0.1)  # Sleep for 0.1 seconds to allow the publisher to initialize
 
-    # # scenario_1
-    # straight(pub)
-    # stop(pub)
-    # right_turn(pub)
-    # stop(pub)
+    # scenario_1
+    straight(pub, speed=0.4, duration=4.0)
+    stop(pub)
+    right_turn(pub, speed=2.0, duration=3.0)
+    stop(pub)
+    straight(pub, speed=0.4, duration=4.0)
+    stop(pub)
 
     # # acceleration
-    # straight(pub, speed=0.5, duration=4.0)
+    # straight(pub, speed=1.0, duration=3.0)
     # straight(pub, speed=1.0, duration=4.0)
     # straight(pub, speed=1.5, duration=4.0)
     # straight(pub, speed=2.0, duration=4.0)
@@ -79,20 +81,22 @@ def scenario():
     # straight(pub, speed=0.5, duration=4.0)
 
     # right turn
-    # right_turn(pub, speed=20.0, duration=4.0)
-    # right_turn(pub, speed=15.0, duration=4.0)
+    # right_turn(pub, speed=10.0, duration=4.0)
+    # stop(pub)
+    # right_turn(pub, speed=-10.0, duration=4.0)
     # right_turn(pub, speed=10.0, duration=4.0)
     # right_turn(pub, speed=5.0, duration=4.0)
 
-    combined(pub, linear=1.0, angular=0.0)
-    combined(pub, linear=1.0, angular=5.0)
-    combined(pub, linear=1.0, angular=10.0)
-    combined(pub, linear=1.0, angular=15.0)
+    # combined
+    # combined(pub, linear=1.0, angular=0.0)
+    # combined(pub, linear=1.0, angular=5.0)
+    # combined(pub, linear=1.0, angular=10.0)
+    # combined(pub, linear=1.0, angular=15.0)
 
-    combined(pub, linear=1.0, angular=10.0)
-    combined(pub, linear=1.5, angular=10.0)
-    combined(pub, linear=2.0, angular=10.0)
-    combined(pub, linear=2.5, angular=10.0)
+    # combined(pub, linear=1.0, angular=10.0)
+    # combined(pub, linear=1.5, angular=10.0)
+    # combined(pub, linear=2.0, angular=10.0)
+    # combined(pub, linear=2.5, angular=10.0)
 
 
     # stop

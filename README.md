@@ -47,6 +47,6 @@ JESTSON
 ## LED INDEX
 - WHITE : DEFAULT
 - BLUE : MID to TOP
-- GREEN : BOTTOM to TOP
-- MAGENTA : On Drive Mode
-- YELLOW : On Manual Mode
+- YELLOW : BOTTOM to TOP
+- GREEN : On Drive Mode
+- RED : On STOP
