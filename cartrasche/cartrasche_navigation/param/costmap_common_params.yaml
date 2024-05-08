@@ -1,26 +1,12 @@
-TrajectoryPlannerROS:
+obstacle_range: 3.0
+raytrace_range: 3.5
 
-# Robot Configuration Parameters
-  max_vel_x: 0.18
-  min_vel_x: 0.08
+# footprint: [[-0.205, -0.155], [-0.205, 0.155], [0.077, 0.155], [0.077, -0.155]]
+# robot_radius: 0.17
 
-  max_vel_theta:  1.0
-  min_vel_theta: -1.0
-  min_in_place_vel_theta: 1.0
+inflation_radius: 1.0
+cost_scaling_factor: 3.0
 
-  acc_lim_x: 1.0
-  acc_lim_y: 0.0
-  acc_lim_theta: 0.6
-
-# Goal Tolerance Parameters
-  xy_goal_tolerance: 0.10
-  yaw_goal_tolerance: 0.05
-
-# Differential-drive robot configuration
-  holonomic_robot: false
-
-# Forward Simulation Parameters
-  sim_time: 0.8
-  vx_samples: 18
-  vtheta_samples: 20
-  sim_granularity: 0.05
+map_type: costmap
+observation_sources: scan
+scan: {sensor_frame: laser_frame, data_type: LaserScan, topic: scan, marking: true, clearing: true}
