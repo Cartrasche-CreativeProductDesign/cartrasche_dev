@@ -8,3 +8,5 @@ global_costmap:
 
   static_map: false
   rolling_window: true
+
+  inflation_radius: 0.2
