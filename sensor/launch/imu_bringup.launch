@@ -2,7 +2,7 @@
 <launch>
     
     <!-- imu calibration -->
-    <arg name="serial_port" default="/dev/ttyUSB1" />
+    <arg name="serial_port" default="/dev/ttyUSB0" />
     <arg name="operation_mode" default="IMU" />
 
     <node pkg="ros_imu_bno055" type="imu_calibration.py" name="ros_imu_bno055_calibration_node" output="screen">
