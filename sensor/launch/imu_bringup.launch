@@ -23,4 +23,6 @@
         <param name="use_temperature" value="$(arg use_temperature)" />    
     </node>
 
+    <node pkg="tf" type="static_transform_publisher" name="map_to_imu_link" args="0 0 0 0 0 0 map imu_link 50" />
+
 </launch>
