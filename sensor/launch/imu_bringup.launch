@@ -12,9 +12,7 @@
     
 
     <!-- imu node -->
-    <arg name="serial_port" default="/dev/ttyUSB1" />
     <arg name="frame_id" default="imu_link" />
-    <arg name="operation_mode" default="IMU" />
     <arg name="oscillator" default="INTERNAL" />
     <arg name="reset_orientation" default="true" />
     <arg name="frequency" default="50" /> 
