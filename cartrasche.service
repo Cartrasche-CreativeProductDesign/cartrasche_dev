@@ -2,7 +2,7 @@
 Description=Cartrsache OnBoot
      
 [Service]
-ExecStart=/home/jetson/cartrasche_dev/run_cartrasche.sh
+ExecStart=/home/jetson/run_cartrasche.sh
      
 [Install]
 WantedBy=default.target

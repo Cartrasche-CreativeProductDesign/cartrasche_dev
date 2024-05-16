@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<robot name="cartrasche" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find cartrasche_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find cartrasche_description)/urdf/cartrasche.trans" />
+<xacro:include filename="$(find cartrasche_description)/urdf/cartrasche.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.0026190663618483622 -2.2185715820021788e-16 0.3388319376922865" rpy="0 0 0"/>
+    <mass value="67.74618432620866"/>
+    <inertia ixx="4.472442" iyy="4.808193" izz="0.950396" ixy="-0.0" iyz="-0.0" ixz="-0.648262"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cartrasche_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cartrasche_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="wheelL_1">
+  <inertial>
+    <origin xyz="-4.260633313594524e-15 -0.0049622230043442905 2.1743594926500883e-17" rpy="0 0 0"/>
+    <mass value="3.060084322980661"/>
+    <inertia ixx="0.0028" iyy="0.004797" izz="0.0028" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.207 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cartrasche_description/meshes/wheelL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.207 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cartrasche_description/meshes/wheelL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="wheelR_1">
+  <inertial>
+    <origin xyz="4.347900040796894e-15 0.0049622230043442905 1.0258460747536548e-16" rpy="0 0 0"/>
+    <mass value="3.060084322980661"/>
+    <inertia ixx="0.0028" iyy="0.004797" izz="0.0028" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 0.207 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cartrasche_description/meshes/wheelR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 0.207 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cartrasche_description/meshes/wheelR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ridar_1">
+  <inertial>
+    <origin xyz="0.0 1.7498924471358617e-16 0.009999999999999898" rpy="0 0 0"/>
+    <mass value="0.6042068071016568"/>
+    <inertia ixx="0.000205" iyy="0.000205" izz="0.00037" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.015 -0.0 -0.783" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cartrasche_description/meshes/ridar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.015 -0.0 -0.783" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cartrasche_description/meshes/ridar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="cam_1">
+  <inertial>
+    <origin xyz="0.025000000000000078 -0.07999999999999989 0.009999999999999995" rpy="0 0 0"/>
+    <mass value="0.024661502330679874"/>
+    <inertia ixx="1e-06" iyy="1e-06" izz="1e-06" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.06 -0.08 -0.063" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cartrasche_description/meshes/cam_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.06 -0.08 -0.063" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://cartrasche_description/meshes/cam_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="회전 1" type="continuous">
+  <origin xyz="0.0 0.207 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="wheelL_1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+</joint>
+
+<joint name="회전 2" type="continuous">
+  <origin xyz="0.0 -0.207 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="wheelR_1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+</joint>
+
+<joint name="회전 3" type="continuous">
+  <origin xyz="-0.015 0.0 0.783" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="ridar_1"/>
+  <axis xyz="-0.0 0.0 1.0"/>
+</joint>
+
+<joint name="강체 4" type="fixed">
+  <origin xyz="0.06 0.08 0.063" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="cam_1"/>
+</joint>
+
+</robot>

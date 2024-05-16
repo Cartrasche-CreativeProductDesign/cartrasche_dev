@@ -1,0 +1,7 @@
+<launch>
+    <!-- Include the cartrasche_navigation launch file -->
+    <include file="$(find cartrasche_navigation)/launch/cartrasche_auto_nav.launch" />
+
+    <!-- Launch the human follower node -->
+    <node name="human_follower" pkg="cartrasche_navigation" type="follow_human.py" output="screen"/>
+</launch>

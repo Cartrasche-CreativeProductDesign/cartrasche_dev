@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find sensor)/launch/lidar_bringup.launch" />
+    <include file="$(find sensor)/launch/cam_aruco_bringup.launch" />
+</launch>
