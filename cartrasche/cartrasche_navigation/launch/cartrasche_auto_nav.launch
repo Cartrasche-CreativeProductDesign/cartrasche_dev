@@ -7,13 +7,17 @@
   <include file="$(find cartrasche_bringup)/launch/cartrasche_remote.launch"/>
 
   <!-- Map server -->
-  <!-- <node pkg="map_server" name="map_server" type="map_server"/> -->
+  <!-- <node pkg="map_server" name="map_server" type="map_server" /> -->
+  
   
   <!-- AMCL -->
   <include file="$(find cartrasche_navigation)/launch/amcl.launch"/>
 
   <!-- move_base -->
   <include file="$(find cartrasche_navigation)/launch/move_base.launch"/>
+
+  <!-- stop_vel_pub -->
+  <node pkg="cartrasche_navigation" type="stop_vel_pub.py" name="stop_vel_pub" output="screen"/>
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
