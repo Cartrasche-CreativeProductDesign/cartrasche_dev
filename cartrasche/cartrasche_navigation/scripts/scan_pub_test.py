@@ -8,7 +8,7 @@ def scan_pub():
     rospy.init_node('scan_test_publisher')
 
     # Create a publisher for the pixel topic
-    pub = rospy.Publisher('/scan_filtered', LaserScan, queue_size=1)
+    pub = rospy.Publisher('/scan', LaserScan, queue_size=1)
 
     # Set the rate at which the message will be published (in Hz)
     rate = rospy.Rate(10)
