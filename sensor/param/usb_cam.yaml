@@ -1,5 +1,5 @@
-image_width: 848
-image_height: 480
+image_width: 640
+image_height: 360
 camera_name: usb_cam
 camera_matrix:
   rows: 3
