@@ -9,8 +9,8 @@
   <!-- <include file="$(find cartrasche_bringup)/launch/cartrasche_remote.launch" /> -->
 
   <!-- Hector SLAM -->
-  <include file="$(find cartrasche_slam)/launch/cartrasche_tf.launch" />
   <include file="$(find cartrasche_slam)/launch/cartrasche_hector.launch" />
+  <include file="$(find cartrasche_slam)/launch/cartrasche_tf.launch" />
 
   <!-- rviz -->
   <group if="$(arg open_rviz)">

@@ -1,3 +1,5 @@
 <launch>
-  <node pkg="tf" type="static_transform_publisher" name="scanmatcher_frame_to_base_link" args="0 0 -0.6 0 0 0 scanmatcher_frame base_link 50" />
+  <node pkg="tf" type="static_transform_publisher" name="scanmatcher_frame_to_base_link" args="0 0 -0.6 0 0 0 scanmatcher_frame base_link 100" />
+  <!-- <node pkg="tf" type="static_transform_publisher" name="laser_frame_to_scanmatcher_frame" args="0 0 0 0 0 0 laser_frame scanmatcher_frame 100" /> -->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser_frame" args="0 0 0 0 0 0 base_link laser_frame 100" /> -->
 </launch>
