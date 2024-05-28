@@ -12,9 +12,9 @@ class StopVel:
 
     def stop_vel_callback(self, data):
         if data.linear.x == 0.0 and data.angular.z == 0.0:
-            rate = rospy.Rate(5)  # 5 Hz
+            rate = rospy.Rate(10)  # 5 Hz
             stop_vel = Int32(1)
-            for _ in range(5):
+            for _ in range(10):
                 self.stop_vel_pub.publish(stop_vel)
                 rate.sleep()
 
