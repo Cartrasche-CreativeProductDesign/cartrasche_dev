@@ -42,26 +42,25 @@ class HumanFollower:
             return
 
         angle_radians = self.estimate_angle(self.current_center_pixel)  # Compute angle(rad) from bounding box center
-        angle_degrees = angle_radians * 180 / math.pi
-        # distance = self.estimate_distance(angle_radians, self.current_scan)  # Find the distance(m) from the LiDAR data at this angle
-        distance = self.estimate_distance()
+        # angle_degrees = angle_radians * 180 / math.pi
+        distance = self.estimate_distance() # meters
 
         # Compute the linear and angular velocities
         cmd_vel = Twist()
+        # Linear velocity
         linear_abs_vel = min(1.0, 0.1 + 0.5 * (distance - 1.5))
         cmd_vel.linear.x = linear_abs_vel if distance > 1.5 else 0.0
-        angular_abs_vel = min(1.0, 0.2 + 1.0 * (abs(angle_radians) - 0.2))
+        # Angular velocity
+        angular_abs_vel = min(1.0, 0.2 + 3.0 * (abs(angle_radians) - 0.2))
+        angular_abs_vel *= 0.7 if distance > 3.0 else 1.0
         cmd_vel.angular.z = angular_abs_vel if angle_radians > 0.2 else -angular_abs_vel if angle_radians < -0.2 else 0.0
 
         self.vel_pub.publish(cmd_vel)
         # stop signal publish
         if cmd_vel.linear.x == 0 and cmd_vel.angular.z == 0:
-            stop_vel = Int32(1)
-            self.stop_vel_pub.publish(stop_vel)
-        rospy.loginfo(f"distance : {distance}")
+            self.pub_stop_vel()
 
-    def scan_callback(self, data):
-        self.current_scan = data
+        rospy.loginfo(f"distance : {distance}")
 
     def aruco_tf_callback(self, data):
         self.current_aruco_tf = data
@@ -82,6 +81,12 @@ class HumanFollower:
         angle_radians = (pixel_offset_from_center / (self.image_width / 2)) * (self.camera_fov / 2.0)
         # angle_radians /= 3.0
         return angle_radians
+    def pub_stop_vel(self):
+        rate = rospy.Rate(5)  # 5 Hz
+        for _ in range(5):  # Publish for 1 second
+            stop_vel = Int32(1)
+            self.stop_vel_pub.publish(stop_vel)
+            rate.sleep()
 
     def run(self):
         """Main loop of the node."""
@@ -92,6 +97,7 @@ class HumanFollower:
                 # No recent center pixel data, publish zero velocity
                 cmd_vel = Twist()
                 self.vel_pub.publish(cmd_vel)
+                self.pub_stop_vel()
                 rospy.loginfo(f"No center pixel data, published zero velocity.")
 
             rate.sleep()
