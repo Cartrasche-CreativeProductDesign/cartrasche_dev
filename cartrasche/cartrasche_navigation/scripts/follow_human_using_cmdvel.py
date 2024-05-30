@@ -48,12 +48,12 @@ class HumanFollower:
         # Compute the linear and angular velocities
         cmd_vel = Twist()
         # Linear velocity
-        linear_abs_vel = min(1.0, 0.1 + 0.5 * (distance - 1.5))
+        linear_abs_vel = min(1.0, 0.2 + 1.0 * (distance - 1.5))
         cmd_vel.linear.x = linear_abs_vel if distance > 1.5 else 0.0
         # Angular velocity
         angular_abs_vel = min(1.0, 0.2 + 3.0 * (abs(angle_radians) - 0.2))
         angular_abs_vel *= 0.7 if distance > 3.0 else 1.0
-        cmd_vel.angular.z = angular_abs_vel if angle_radians > 0.2 else -angular_abs_vel if angle_radians < -0.2 else 0.0
+        cmd_vel.angular.z = angular_abs_vel if angle_radians > 0.2 else -angular_abs_vel/2 if angle_radians < -0.2 else 0.0
 
         self.vel_pub.publish(cmd_vel)
         # stop signal publish
@@ -91,7 +91,7 @@ class HumanFollower:
 
     def run(self):
         """Main loop of the node."""
-        rate = rospy.Rate(10)  # 5 Hz
+        rate = rospy.Rate(5)  # 5 Hz
         while not rospy.is_shutdown():
             current_time = rospy.Time.now()
             if (current_time - self.last_center_pixel_time) > self.timeout_duration:

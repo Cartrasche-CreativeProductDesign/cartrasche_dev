@@ -1,7 +1,7 @@
 <launch>
-    <!-- Include the cartrasche_navigation launch file -->
-    <include file="$(find cartrasche_navigation)/launch/cartrasche_auto_nav.launch" />
-
     <!-- Launch the human follower node -->
-    <node name="human_follower" pkg="cartrasche_navigation" type="follow_human.py" output="screen"/>
+    <node name="human_follower" pkg="cartrasche_navigation" type="follow_human_using_cmdvel.py" output="screen"/>
+
+    <!-- <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find cartrasche_navigation)/rviz/cartrasche_auto_nav.rviz"/> -->
 </launch>
