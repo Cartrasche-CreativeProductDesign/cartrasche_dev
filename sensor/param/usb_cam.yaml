@@ -1,26 +1,47 @@
-image_width: 640
-image_height: 480
+# image_width: 640
+# image_height: 480
+# camera_name: usb_cam
+# camera_matrix:
+#   rows: 3
+#   cols: 3
+#   data: [271.848301, 0.0, 318.657344,
+#          0.0, 272.193862, 234.201362, 
+#          0.0, 0.0, 1.0]
+# distortion_model: plumb_bob
+# distortion_coefficients:
+#   rows: 1
+#   cols: 5
+#   data: [0.014061, -0.004374, -0.001339, 0.000096, 0.0]
+# rectification_matrix:
+#   rows: 3
+#   cols: 3
+#   data: [1., 0., 0.,
+#          0., 1., 0.,
+#          0., 0., 1.]
+# projection_matrix:
+#   rows: 3
+#   cols: 4
+#   data: [275.356858, 0.0, 318.771293, 0.0,
+#          0.0, 275.269133, 233.088568, 0.0,
+#          0.0, 0.0, 1.0, 0.0]
+
+image_width: 1920
+image_height: 1080
 camera_name: usb_cam
 camera_matrix:
   rows: 3
   cols: 3
-  data: [271.848301, 0.0, 318.657344,
-         0.0, 272.193862, 234.201362, 
-         0.0, 0.0, 1.0]
+  data: [803.8086233029028, 0, 948.1808932821509, 0, 803.5606782469938, 516.0921087571659, 0, 0, 1]
 distortion_model: plumb_bob
 distortion_coefficients:
   rows: 1
   cols: 5
-  data: [0.014061, -0.004374, -0.001339, 0.000096, 0.0]
+  data: [0.0216353751200551, -0.008706250275878621, -0.004281660772180612, -0.002504914315168204, 0]
 rectification_matrix:
   rows: 3
   cols: 3
-  data: [1., 0., 0.,
-         0., 1., 0.,
-         0., 0., 1.]
+  data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
 projection_matrix:
   rows: 3
   cols: 4
-  data: [275.356858, 0.0, 318.771293, 0.0,
-         0.0, 275.269133, 233.088568, 0.0,
-         0.0, 0.0, 1.0, 0.0]
+  data: [816.8285671029556, 0, 938.7914795053387, 0, 0, 818.369772174281, 508.1190852638135, 0, 0, 0, 1, 0]
