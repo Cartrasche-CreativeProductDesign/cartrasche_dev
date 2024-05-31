@@ -1,0 +1,6 @@
+<launch>
+    <!-- Launch the human follower node -->
+    <node name="human_follower" pkg="cartrasche_navigation" type="follow_human.py" output="screen"/>
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find cartrasche_navigation)/rviz/cartrasche_auto_nav.rviz"/>
+</launch>

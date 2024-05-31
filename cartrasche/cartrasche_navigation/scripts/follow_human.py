@@ -27,8 +27,8 @@ class HumanFollower:
         self.last_center_pixel_time = rospy.Time.now()
         self.timeout_duration = rospy.Duration(1.5)  # 1.5 second timeout
 
-        self.focal_length_x = rospy.get_param('~human_follower/focal_length_x', 271.848301)
-        self.image_width = rospy.get_param('~human_follower/image_width', 640)
+        self.focal_length_x = rospy.get_param('~human_follower/focal_length_x', 803.8086233029028)
+        self.image_width = rospy.get_param('~human_follower/image_width', 1920)
         self.camera_fov = 2 * math.atan2(self.image_width / 2, self.focal_length_x)  # Field of view of the camera
 
     def center_pixel_callback(self, data):
@@ -61,16 +61,17 @@ class HumanFollower:
             self.pub_stop_vel()
 
         # rospy.loginfo(f"distance : {distance}")
-        rospy.loginfo(f"angle_deg : {angle_radians * 180 / (2 * math.pi)}")
+        rospy.loginfo(f"angle_deg : {angle_radians * 180 / (math.pi)}")
 
     def aruco_tf_callback(self, data):
         self.current_aruco_tf = data
     
     def estimate_distance(self):
-        x = self.current_aruco_tf.transform.translation.x
-        y = self.current_aruco_tf.transform.translation.y
+        # x = self.current_aruco_tf.transform.translation.x
+        # y = self.current_aruco_tf.transform.translation.y
         z = self.current_aruco_tf.transform.translation.z
-        distance = math.sqrt(x**2 + y**2 + z**2)
+        # distance = math.sqrt(x**2 + y**2 + z**2)
+        distance = z
 
         return distance
 
@@ -82,6 +83,7 @@ class HumanFollower:
         angle_radians = (pixel_offset_from_center / (self.image_width / 2)) * (self.camera_fov / 2.0)
         # angle_radians /= 3.0
         return angle_radians
+    
     def pub_stop_vel(self):
         rate = rospy.Rate(5)  # 5 Hz
         for _ in range(5):  # Publish for 1 second
