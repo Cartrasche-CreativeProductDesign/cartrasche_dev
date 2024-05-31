@@ -27,8 +27,8 @@ class HumanFollower:
         self.last_center_pixel_time = rospy.Time.now()
         self.timeout_duration = rospy.Duration(1.5)  # 1.5 second timeout
 
-        self.focal_length_x = rospy.get_param('~human_follower/focal_length_x', 803.8086233029028)
-        self.image_width = rospy.get_param('~human_follower/image_width', 1920)
+        self.focal_length_x = rospy.get_param('~human_follower/focal_length_x', 520.860007)
+        self.image_width = rospy.get_param('~human_follower/image_width', 1280)
         self.camera_fov = 2 * math.atan2(self.image_width / 2, self.focal_length_x)  # Field of view of the camera
 
     def center_pixel_callback(self, data):
@@ -48,7 +48,7 @@ class HumanFollower:
         # Compute the linear and angular velocities
         cmd_vel = Twist()
         # Linear velocity
-        linear_abs_vel = min(1.0, 0.2 + 1.0 * (distance - 1.5))
+        linear_abs_vel = min(1.5, 0.2 + 1.0 * (distance - 1.5))
         cmd_vel.linear.x = linear_abs_vel if distance > 1.5 else 0.0
         # Angular velocity
         angular_abs_vel = min(1.0, 0.2 + 3.0 * (abs(angle_radians) - 0.2))
