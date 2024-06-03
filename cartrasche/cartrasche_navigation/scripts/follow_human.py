@@ -48,12 +48,12 @@ class HumanFollower:
         # Compute the linear and angular velocities
         cmd_vel = Twist()
         # Linear velocity
-        linear_abs_vel = min(1.5, 0.2 + 1.0 * (distance - 1.5))
-        cmd_vel.linear.x = linear_abs_vel if distance > 1.5 else 0.0
+        linear_abs_vel = min(1.5, 0.2 + 1.0 * (distance - 0.5))
+        cmd_vel.linear.x = linear_abs_vel if distance > 0.5 else 0.0
         # Angular velocity
-        angular_abs_vel = min(1.0, 0.2 + 3.0 * (abs(angle_radians) - 0.2))
+        angular_abs_vel = min(1.0, 0.2 + 2.0 * (abs(angle_radians) - 0.2))
         angular_abs_vel *= 0.7 if distance > 3.0 else 1.0
-        cmd_vel.angular.z = angular_abs_vel if angle_radians > 0.2 else -angular_abs_vel/2 if angle_radians < -0.2 else 0.0
+        cmd_vel.angular.z = angular_abs_vel if angle_radians > 0.2 else -angular_abs_vel/3 if angle_radians < -0.2 else 0.0
 
         self.vel_pub.publish(cmd_vel)
         # stop signal publish
