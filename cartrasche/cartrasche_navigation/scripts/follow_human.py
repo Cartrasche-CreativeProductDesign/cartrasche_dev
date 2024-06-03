@@ -25,7 +25,7 @@ class HumanFollower:
         self.current_aruco_tf = None
 
         self.last_center_pixel_time = rospy.Time.now()
-        self.timeout_duration = rospy.Duration(1.5)  # 1.5 second timeout
+        self.timeout_duration = rospy.Duration(0.5)  # 1.5 second timeout
 
         self.focal_length_x = rospy.get_param('~human_follower/focal_length_x', 520.860007)
         self.image_width = rospy.get_param('~human_follower/image_width', 1280)
