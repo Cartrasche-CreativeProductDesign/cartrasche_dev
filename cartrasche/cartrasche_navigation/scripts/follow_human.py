@@ -53,7 +53,7 @@ class HumanFollower:
         # Angular velocity
         angular_abs_vel = min(1.0, 0.2 + 2.0 * (abs(angle_radians) - 0.2))
         angular_abs_vel *= 0.7 if distance > 3.0 else 1.0
-        cmd_vel.angular.z = angular_abs_vel if angle_radians > 0.2 else -angular_abs_vel/3 if angle_radians < -0.2 else 0.0
+        cmd_vel.angular.z = angular_abs_vel if angle_radians > 0.2 else -angular_abs_vel/5 if angle_radians < -0.2 else 0.0
 
         self.vel_pub.publish(cmd_vel)
         # stop signal publish
