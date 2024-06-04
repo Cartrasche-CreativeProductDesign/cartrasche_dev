@@ -48,7 +48,7 @@ class HumanFollower:
         # Compute the linear and angular velocities
         cmd_vel = Twist()
         # Linear velocity
-        linear_abs_vel = min(1.5, 0.2 + 1.0 * (distance - 0.5))
+        linear_abs_vel = min(1.9, 0.3 + 1.5 * (distance - 0.5))
         cmd_vel.linear.x = linear_abs_vel if distance > 0.5 else 0.0
         # Angular velocity
         angular_abs_vel = min(1.0, 0.2 + 2.0 * (abs(angle_radians) - 0.2))
